@@ -4,10 +4,39 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
           rel="stylesheet" />
     <link href="../assets/css/main.css" rel="stylesheet" />
+    <link href="../assets/css/customStyle.css" rel="stylesheet" />
+    <link href="../../css/all.min.css" rel="stylesheet" />
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
     <title>Document</title>
 </head>
 <body>
+    <div class="row app-header">
+        <div class="col-6 pl-4">
+            <a href="dashBoard.html">
+                <img src="../assets/images/linkHighLighterimages/v1_125.png" class="main-logo" />
+            </a>
+        </div>
+        <div class="col-6 text-right head-icon pt-2">
+            <!--<img src="../assets/images/bar-chart-2.svg" class="usericon-main" />-->
+            <a href="setting.html"><img src="../assets/images/settings.svg" class="usericon-main" title="Settings" /></a>
+            <div class="dropdown" style="width: 25px; display: inline-block;">
+                <img src="../assets/images/user.svg" class="usericon-main" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="accountSetting.html" title="Account Settings">Account Settings</a>
+                    <a class="dropdown-item" href="#" title="Buy Credits">Buy Credits</a>
+                    <a class="dropdown-item" href="#" id="btnLogout" title="Logout">Logout</a>
+                </div>
+            </div>
+            <label class="switch">
+                <input class="APP_STATE_TOGGLE" type="checkbox" id="chkAppOnOff" checked="checked">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
     <div class="v1_126">
+        <div class="v1_downloadButton">
+            <a id="btnDownloadHighLighter" href="" class="btn btn-primary custom-delete">Download</a>
+        </div>
         <div class="v1_127"></div>
         <div class="v1_128"></div>
         <div class="v1_129"></div>
@@ -25,17 +54,30 @@
         <div class="v1_154"></div>
         <div class="v1_155"></div>
         <div class="v1_156"></div>
-        <span class="v1_157">© 2021 lemlinks. All Rights Reserved.</span>
-        <span class="v1_158">Internal links</span>
-        <span class="v1_159">External links</span>
-        <span class="v1_160">Do follow links</span>
-        <span class="v1_161">No follow links</span>
+        <span class="v1_157">&copy; 2021 lemlinks. All Rights Reserved.</span>
+
+        <span class="v1_158">Internal Links</span>
+        <span class="v1_DonwloadTypeInternal"><a id="btnDownloadInternalLink" href=""><img src="../assets/images/download.svg" /></a></span>
+
+        <span class="v1_159">External Links</span>
+        <span class="v1_DonwloadTypeExternal"><a id="btnDownloadExternalLink" href=""><img src="../assets/images/download.svg" /></a></span>
+
+        <span class="v1_160">Do Follow Links</span>
+        <span class="v1_DonwloadTypeDo"><a id="btnDownloadDoFollowLink" href=""><img src="../assets/images/download.svg" /></a></span>
+
+        <span class="v1_161">No Follow Links</span>
+        <span class="v1_DonwloadTypeNo"><a id="btnDownloadNoFollowLink" href=""><img src="../assets/images/download.svg" /></a></span>
+
         <span class="v1_162">Sponsored Links</span>
-        <span class="v1_163">User generated Links</span>
+        <span class="v1_DonwloadTypeSponsored"><a id="btnDownloadSponsoredLink" href=""><img src="../assets/images/download.svg" /></a></span>
+
+        <span class="v1_163">User Generated Links</span>
+        <span class="v1_DonwloadTypeUser"><a id="btnDownloadUGLinks" href=""><img src="../assets/images/download.svg" /></a></span>
+
         <span class="v1_164"></span><span class="v1_165"></span>
         <span class="v1_166"></span><span class="v1_167"></span>
         <span class="v1_168"></span><span class="v1_169"></span>
-        <span class="v1_170">FAQs / Buy Credits</span><span class="v1_171">Link Typer</span><span class="v1_172">Extracted links</span>
+        <span class="v1_170 common-faq-credit"><a href="https://pearllemonleads.com" class="footer-but-credit" style="color:#000" target="_blank">FAQs</a> / <a href="https://lemlinks.pearllemonleads.com" style="color:#000" target="_blank" class="footer-but-credit">Buy Credits</a></span><span class="v1_171">Link Typer</span><span class="v1_172">Extracted links</span>
         <div class="v1_173"></div>
         <a href="dashBoard.html">
             <div class="v1_174">
@@ -46,27 +88,14 @@
         </a>
         <div class="v1_175 d-none"></div>
         <span class="v1_176"></span>
-        <div class="v1_177">
-            <div class="v1_178"></div>
-            <div class="v1_179"></div>
-            <div class="v1_180"></div>
-            <div class="v1_181">
-                <div class="v1_182"></div>
-                <div class="v1_183"></div>
-                <div class="v1_184"></div>
-            </div>
-            <div class="v1_185"></div>
-            <div class="v1_186"></div>
-            <div class="v1_187">
-                <div class="v1_188"><div class="v1_189"></div></div>
-                <a href="setting.html">
-                    <div class="v1_190"></div>
-                </a>
-            </div>
-            <div class="v1_191"></div>
-        </div>
     </div>
-    <script src="../../scripts/imports/js/jquery.min.js"></script>
+    <div class="v1_usercredit">
+        Credits: <label id="lblAvailableCredit">0</label>/<label id="lblTotalCredit">0</label>
+    </div>
+    <script src="../../scripts/popper.min.js"></script>
+    <script src="../../scripts/jquery-3.6.0.min.js"></script>
+    <script src="../../scripts/bootstrap.min.js"></script>
+    <script src="../popupScrippts/utilities.js"></script>
     <script src="../popupScrippts/linkTyper.js"></script>
 </body>
 </html>

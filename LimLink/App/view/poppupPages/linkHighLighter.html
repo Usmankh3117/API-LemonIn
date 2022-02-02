@@ -4,11 +4,45 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
           rel="stylesheet" />
     <link href="../assets/css/main.css" rel="stylesheet" />
+    <link href="../assets/css/customStyle.css" rel="stylesheet" />
+    <link href="../../css/all.min.css" rel="stylesheet" />
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
 
     <title>Document</title>
 </head>
 <body>
+    <style>
+        .dropdown-menu {
+            left: -105px !important;
+        }
+    </style>
+    <div class="row app-header">
+        <div class="col-6 pl-4">
+            <a href="dashBoard.html">
+                <img src="../assets/images/linkHighLighterimages/v1_125.png" class="main-logo" />
+            </a>
+        </div>
+        <div class="col-6 text-right head-icon pt-2">
+            <!--<img src="../assets/images/bar-chart-2.svg" class="usericon-main" />-->
+            <a href="setting.html"><img src="../assets/images/settings.svg" class="usericon-main" title="Settings" /></a>
+            <div class="dropdown" style="width: 25px; display: inline-block;">
+                <img src="../assets/images/user.svg" class="usericon-main" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="accountSetting.html" title="Account Settings">Account Settings</a>
+                    <a class="dropdown-item" href="#" title="Buy Credits">Buy Credits</a>
+                    <a class="dropdown-item" href="#" id="btnLogout" title="Logout">Logout</a>
+                </div>
+            </div>
+            <label class="switch">
+                <input class="APP_STATE_TOGGLE" type="checkbox" id="chkAppOnOff" checked="checked">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
     <div class="v1_83">
+        <div class="v1_downloadButton">
+            <a id="btnDownloadHighLighter" href="" class="btn btn-primary custom-delete">Download</a>
+        </div>
         <div class="v1_84"></div>
         <div class="v1_99 d-none">
             <div class="v1_100"></div>
@@ -16,7 +50,7 @@
             <div class="v1_102"></div>
         </div>
         <div class="v1_103"></div>
-        <span class="v1_104">© 2021 lemlinks. All Rights Reserved.</span><span class="v1_105">All Links</span><span class="v1_106" id="totalHighLightedLinks">0</span><span class="v1_107">FAQs / Buy Credits</span><span class="v1_108">Link Highlighter</span><span class="v1_109">Extracted links</span>
+        <span class="v1_104">&copy; 2021 lemlinks. All Rights Reserved.</span><span class="v1_105">All Links</span><span class="v1_106" id="totalHighLightedLinks">0</span><span class="v1_107 common-faq-credit"><a href="https://pearllemonleads.com" class="footer-but-credit" style="color:#000" target="_blank">FAQs</a> / <a class="footer-but-credit" href="https://lemlinks.pearllemonleads.com" style="color:#000" target="_blank">Buy Credits</a></span><span class="v1_108">Link Highlighter</span><span class="v1_109">Extracted links</span>
         <div class="v1_110"></div>
         <a href="dashBoard.html">
             <div class="v1_111">
@@ -25,7 +59,7 @@
                 </svg>
             </div>
         </a>
-        <div class="v1_112"></div>
+        <!--<div class="v1_112"></div>
         <div class="v1_113"></div>
         <div class="v1_114"></div>
         <div class="v1_115">
@@ -41,9 +75,15 @@
                 <div class="v1_124"></div>
             </a>
         </div>
-        <div class="v1_125"></div>
+        <div class="v1_125"></div>-->
     </div>
-    <script src="../../scripts/imports/js/jquery.min.js"></script>
+    <div class="v1_usercredit">
+        Credits: <label id="lblAvailableCredit">0</label>/<label id="lblTotalCredit">0</label>
+    </div>
+    <script src="../../scripts/popper.min.js"></script>
+    <script src="../../scripts/jquery-3.6.0.min.js"></script>
+    <script src="../../scripts/bootstrap.min.js"></script>
+    <script src="../popupScrippts/utilities.js"></script>
     <script src="../popupScrippts/linkHighlighter.js"></script>
 </body>
 </html>

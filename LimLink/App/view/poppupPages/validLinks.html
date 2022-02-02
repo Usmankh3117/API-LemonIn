@@ -1,69 +1,203 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+          rel="stylesheet" />
     <link href="../assets/css/main.css" rel="stylesheet" />
+    <link href="../assets/css/customStyle.css" rel="stylesheet" />
+    <link href="../../css/all.min.css" rel="stylesheet" />
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
     <title>Document</title>
-  </head>
-  <body>
-    <div class="v1_279">
-      <div class="v1_294">
-        <div class="v1_295"></div>
-        <div class="v1_296"></div>
-        <div class="v1_297"></div>
-      </div>
-      <span class="v1_298">© 2021 lemlinks. All Rights Reserved.</span
-      ><span class="v1_299">FAQs / Buy Credits</span
-      ><span class="v1_300">Valid Links</span>
-      <div class="v1_301"></div>
-      <a href="myLinks.html">
-        <div class="v1_302"></div>
-      </a>
-      <div class="v1_303"></div>
-      <div class="v1_304"></div>
-      <div class="v1_305"></div>
-      <span class="v1_306">Date - Time - Page Title</span
-      ><span class="v1_307">Date - Time - Page Title</span
-      ><span class="v1_308">pearllemon.com/blog</span
-      ><span class="v1_309">pearllemon.com</span
-      ><span class="v1_310">pearllemon.com/founder</span>
-      <div class="v1_311"></div>
-      <div class="v1_312"></div>
-      <div class="v1_313"></div>
-      <div class="v1_314"></div>
-      <div class="v1_315"></div>
-      <div class="v1_316"><div class="v1_317"></div></div>
-      <div class="v1_318"><div class="v1_319"></div></div>
-      <div class="v1_320"></div>
-      <div class="v1_321"></div>
-      <div class="v1_322"></div>
-      <div class="v1_323"></div>
-      <div class="v1_324"></div>
-      <span class="v1_325">Clear Lemlinks History</span>
-      <div class="v1_326"></div>
-      <span class="v1_327">Type Keyword</span>
-      <div class="v1_264">
-        <div class="v1_265"></div>
-        <div class="v1_266"></div>
-        <div class="v1_267"></div>
-        <div class="v1_268">
-          <div class="v1_269"></div>
-          <div class="v1_270"></div>
-          <div class="v1_271"></div>
+</head>
+<body>
+    <style>
+        [data-toggle="collapse"] .fa:before {
+            content: "\f078";
+            /*content: "\f077";*/
+        }
+
+        [data-toggle="collapse"].collapsed .fa:before {
+            content: "\f077";
+            /*content: "\f078";*/
+        }
+
+        .opener-footer {
+            position: relative;
+        }
+
+        #divHistoryLinks {
+            min-height: 360px;
+        }
+
+        .dropdown-menu {
+            left: -75px !important;
+        }
+        .customtooltip span.show {
+            left: -4.2em !important;
+        }
+    </style>
+    <div class="row app-header">
+        <div class="col-6 pl-4">
+            <a href="dashBoard.html">
+                <img src="../assets/images/linkHighLighterimages/v1_125.png" class="main-logo" />
+            </a>
         </div>
-        <div class="v1_272"></div>
-        <div class="v1_273"></div>
-        <div class="v1_274">
-          <div class="v1_275"><div class="v1_276"></div></div>
-          <a href="setting.html">
-            <div class="v1_277"></div>
-          </a>
+        <div class="col-6 text-right head-icon pt-2">
+            <!--<img src="../assets/images/bar-chart-2.svg" class="usericon-main" />-->
+            <a href="setting.html"><img src="../assets/images/settings.svg" class="usericon-main" title="Settings" /></a>
+            <div class="dropdown" style="width: 25px; display: inline-block;">
+                <img src="../assets/images/user.svg" class="usericon-main" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="accountSetting.html" title="Account Settings">Account Settings</a>
+                    <a class="dropdown-item" href="#" title="Buy Credits">Buy Credits</a>
+                    <a class="dropdown-item" href="#" id="btnLogout" title="Logout">Logout</a>
+                </div>
+            </div>
+            <label class="switch">
+                <input class="APP_STATE_TOGGLE" type="checkbox" id="chkAppOnOff" checked="checked">
+                <span class="slider round"></span>
+            </label>
         </div>
-        <div class="v1_278"></div>
-      </div>
     </div>
-  </body>
+    <div class="row m-2">
+        <div class="col-6" style="padding-top: 18px !important; padding-left: 20px; color: rgba(71, 70, 66, 1); font-size: 16px; font-family: Roboto; ">
+            <a href="myLinks.html" style="color: black; padding-right: 8px; color: rgba(71, 70, 66, 1); font-size: 16px; ">
+                <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 1L1 6L6 11" stroke="#474642" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </a>
+            History
+        </div>
+        <div class="col-6 text-right" style="padding-top: 18px !important; padding-right: 10px; color: rgba(71, 70, 66, 1); font-size: 16px; font-family: Roboto; ">
+            Credits: <label id="lblAvailableCredit">0</label>/<label id="lblTotalCredit">0</label>
+        </div>
+        <div class="col-12 p-0">
+            <hr class="m-0" style="background-color: rgba(71, 70, 66, 1); margin-top: 0px !important;" />
+        </div>
+    </div>
+    <label id="lblCopyMessage" class="text-success m-0 pl-4"></label>
+    <div class="row m-2 mb-4">
+        <div class="col-12 text-right">
+            <a id="btnDownloadHistory" href="" class="btn btn-primary custom-delete mr-2 pt-2 pb-2">Download History</a>
+            <button class="btn btn-primary custom-delete pt-2 pb-2" id="btnDeleteHistory">Clear Lemlinks History</button>
+        </div>
+    </div>
+    <div class="row m-2" id="divShareDetails">
+        <div class="col-6">
+            <input type="hidden" id="hdnLinkId" />
+            <input type="hidden" id="hdnShareType" />
+            <input type="text" id="txtShareEmail" class="form-control custom-input custom-textbox-share" placeholder="Email Address">
+            <label class="text mb-0" id="lblShareEmail"></label>
+        </div>
+        <div class="col-6">
+            <button type="submit" id="btnShareLink" class="btn btn-primary custom-share">Share</button>
+        </div>
+    </div>
+    <div id="divHistoryLinks">
+        <!--<div class="col-11 ml-3 hisotry-collapse">
+            <div class="p-2 hisotry-tabs row" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                <div class="col-10" id="divDateText">07/07/2021</div>
+                <div class="col-2"><i class="fa ml-3" aria-hidden="true"></i></div>
+            </div>
+            <div id="collapse1" class="collapse hisotry-content pt-3 pb-3" aria-labelledby="headingOne" data-parent="#divHistoryLinks">
+                <div class="row mb-2">
+                    <div class="col-8 pl-5" id="divLinkText">
+                        www.goog.ecom
+                    </div>
+                    <div class="col-4">
+                        <i class="far fa-trash-alt mr-2 btnDeleteSingleLink" style="color:red" title="Delete" data-id=""></i>
+                        <i class="fas fa-share-alt mr-2 btnShareSinglelink" title="Share" data-id=""></i>
+                        <i class="far fa-star mr-2 btnSaveSinglelink" title="Save" data-id=""></i>
+                        <i class="far fa-copy mr-3 copytoclipboard" title="Copy to clipboard"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-11 ml-3 hisotry-collapse">
+            <div class="p-2 hisotry-tabs row" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                <div class="col-10" id="divDateText">07/07/2021</div>
+                <div class="col-2"><i class="fa ml-3" aria-hidden="true"></i></div>
+            </div>
+            <div id="collapse2" class="collapse hisotry-content pt-3 pb-3" aria-labelledby="headingOne" data-parent="#divHistoryLinks">
+                <div class="row mb-2">
+                    <div class="col-8 pl-5" id="divLinkText">
+                        www.goog.ecom
+                    </div>
+                    <div class="col-4">
+                        <i class="far fa-trash-alt mr-2 btnDeleteSingleLink" style="color:red" title="Delete" data-id=""></i>
+                        <i class="fas fa-share-alt mr-2 btnShareSinglelink" title="Share" data-id=""></i>
+                        <i class="far fa-star mr-2 btnSaveSinglelink" title="Save" data-id=""></i>
+                        <i class="far fa-copy mr-3 copytoclipboard" title="Copy to clipboard"></i>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-8 pl-5" id="divLinkText">
+                        www.goog.ecom
+                    </div>
+                    <div class="col-4">
+                        <i class="far fa-trash-alt mr-2 btnDeleteSingleLink" style="color:red" title="Delete" data-id=""></i>
+                        <i class="fas fa-share-alt mr-2 btnShareSinglelink" title="Share" data-id=""></i>
+                        <i class="far fa-star mr-2 btnSaveSinglelink" title="Save" data-id=""></i>
+                        <i class="far fa-copy mr-3 copytoclipboard" title="Copy to clipboard"></i>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+    </div>
+    <div class="row mb-3 m-2 opener-footer" style="padding-bottom: 10px !important; padding-left: 1px !important; ">
+        <div class="col-6" style="width: 450px; font-family: Roboto;">
+            &copy; 2021 lemlinks. All Rights Reserved.
+        </div>
+        <div class="col-6 text-right" style="padding-right: 17px; font-family: Roboto;">
+            <a href="https://pearllemonleads.com" class="footer-but-credit" style="color:#000" target="_blank">FAQs</a> / <a href="https://lemlinks.pearllemonleads.com" style="color:#000" target="_blank" class="footer-but-credit">Buy Credits</a>
+        </div>
+    </div>
+    <!--<div class="v1_279">
+        <div class="v1_294">
+            <div class="v1_295"></div>
+            <div class="v1_296"></div>
+            <div class="v1_297"></div>
+        </div>
+        <span class="v1_298">&copy; 2021 lemlinks. All Rights Reserved.</span><span class="v1_299">FAQs / Buy Credits</span><span class="v1_300">Valid Links</span>
+        <div class="v1_301"></div>
+        <a href="myLinks.html">
+            <div class="v1_111">
+                <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 1L1 6L6 11" stroke="#474642" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </div>
+        </a>
+        <div class="v1_303"></div>
+        <div class="v1_304"></div>
+        <div class="v1_305"></div>
+        <span class="v1_306">Date - Time - Page Title</span><span class="v1_307">Date - Time - Page Title</span><span class="v1_308">pearllemon.com/blog</span><span class="v1_309">pearllemon.com</span><span class="v1_310">pearllemon.com/founder</span>
+        <div class="v1_311"></div>
+        <div class="v1_312"></div>
+        <div class="v1_313"></div>
+        <div class="v1_314"></div>
+        <div class="v1_315"></div>
+        <div class="v1_316"><div class="v1_317"></div></div>
+        <div class="v1_318"><div class="v1_319"></div></div>
+        <div class="v1_320"></div>
+        <div class="v1_321"></div>
+        <div class="v1_322"></div>
+        <div class="v1_323"></div>
+        <div class="v1_324"></div>
+        <span class="v1_325">Clear Lemlinks History</span>
+        <div class="v1_326"></div>
+        <span class="v1_327">Type Keyword</span>
+    </div>-->
+    <div id="lemoin-overlay" style="display:none;">
+        <div class="lemoin-spinner"></div>
+        <br />
+        Loading...
+    </div>
+    <div id="snackbarMessage"></div>
+    <script src="../../scripts/popper.min.js"></script>
+    <script src="../../scripts/jquery-3.6.0.min.js"></script>
+    <script src="../../scripts/bootstrap.min.js"></script>
+    <script src="../popupScrippts/utilities.js"></script>
+    <script src="../popupScrippts/historyLinks.js"></script>
+</body>
 </html>

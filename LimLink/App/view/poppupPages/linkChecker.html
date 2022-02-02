@@ -1,15 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- <link
-      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
-      rel="stylesheet"
-    /> -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+          rel="stylesheet" />
     <link href="../assets/css/main.css" rel="stylesheet" />
+    <link href="../assets/css/customStyle.css" rel="stylesheet" />
+    <link href="../../css/all.min.css" rel="stylesheet" />
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
     <title>Document</title>
 </head>
 <body>
+    <div class="row app-header">
+        <div class="col-6 pl-4">
+            <a href="dashBoard.html">
+                <img src="../assets/images/linkHighLighterimages/v1_125.png" class="main-logo" />
+            </a>
+        </div>
+        <div class="col-6 text-right head-icon pt-2">
+            <!--<img src="../assets/images/bar-chart-2.svg" class="usericon-main" />-->
+            <a href="setting.html"><img src="../assets/images/settings.svg" class="usericon-main" title="Settings" /></a>
+            <div class="dropdown" style="width: 25px; display: inline-block;">
+                <img src="../assets/images/user.svg" class="usericon-main" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="accountSetting.html" title="Account Settings">Account Settings</a>
+                    <a class="dropdown-item" href="#" title="Buy Credits">Buy Credits</a>
+                    <a class="dropdown-item" href="#" id="btnLogout" title="Logout">Logout</a>
+                </div>
+            </div>
+            <label class="switch">
+                <input class="APP_STATE_TOGGLE" type="checkbox" id="chkAppOnOff" checked="checked">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
     <div class="v1_524">
+        <div class="v1_downloadButton">
+            <a id="btnDownloadHighLighter" href="" class="btn btn-primary custom-delete">Download</a>
+        </div>
         <div class="v1_525"></div>
         <div class="v1_526"></div>
         <div class="v1_527"></div>
@@ -24,9 +51,30 @@
         <div class="v1_536"></div>
         <div class="v1_537"></div>
         <div class="v1_538"></div>
-        <span class="v1_539">
-            Valid links<div class="loader"></div>
-        </span><span class="v1_540">404 links<div class="loader"></div></span><span class="v1_541">broken links<div class="loader"></div></span><span class="v1_542">empty links<div class="loader"></div></span><span class="v1_543">redirects<div class="loader"></div></span><span class="v1_544">no domain links<div class="loader"></div></span><span class="v1_545">Server errors<div class="loader"></div></span><span class="v1_546">0</span><span class="v1_547">0</span><span class="v1_548">0</span><span class="v1_549">0</span><span class="v1_550">0</span><span class="v1_551">0</span><span class="v1_552">0</span><span class="v1_553">Link Checker</span><span class="v1_554">Extracted links</span>
+        <span class="v1_539">Valid Links<div class="loader"></div></span>
+        <span class="v1_DonwloadCheckValid"><a id="btnDownloadValidlLink" href=""><img src="../assets/images/download.svg" /></a></span>
+
+        <span class="v1_540">404 Links<div class="loader"></div></span>
+        <span class="v1_DonwloadCheck404"><a id="btnDownload404Link" href=""><img src="../assets/images/download.svg" /></a></span>
+
+        <span class="v1_541">Broken Links<div class="loader"></div></span>
+        <span class="v1_DonwloadCheckbroken"><a id="btnDownloadbrokenLink" href=""><img src="../assets/images/download.svg" /></a></span>
+
+        <span class="v1_542">Empty Links<div class="loader"></div></span>
+        <span class="v1_DonwloadCheckempty"><a id="btnDownloademptyLink" href=""><img src="../assets/images/download.svg" /></a></span>
+
+        <span class="v1_543">Redirects<div class="loader"></div></span>
+        <span class="v1_DonwloadCheckredirects"><a id="btnDownloadredirectsLink" href=""><img src="../assets/images/download.svg" /></a></span>
+
+        <span class="v1_544">No Domain Links<div class="loader"></div></span>
+        <span class="v1_DonwloadChecknoDomain"><a id="btnDownloadnoDomainLink" href=""><img src="../assets/images/download.svg" /></a></span>
+
+        <span class="v1_545">Server Errors<div class="loader"></div></span>
+        <span class="v1_DonwloadCheckServer"><a id="btnDownloadServerLink" href=""><img src="../assets/images/download.svg" /></a></span>
+
+
+        <span class="v1_546">0</span><span class="v1_547">0</span>
+        <span class="v1_548">0</span><span class="v1_549">0</span><span class="v1_550">0</span><span class="v1_551">0</span><span class="v1_552">0</span><span class="v1_553">Link Checker</span><span class="v1_554">Extracted links</span>
         <div class="v1_555"></div>
         <a href="dashBoard.html">
             <div class="v1_556">
@@ -39,28 +87,15 @@
         <span class="v1_558" style="font-size: large;"></span>
         <div class="v1_559 d-none"></div>
         <div class="v1_560 d-none"></div>
-        <span class="v1_561 d-none">Unknown</span><span class="v1_562"></span><span class="v1_563">© 2021 lemlinks. All Rights Reserved.</span><span class="v1_564">FAQs / Buy Credits</span>
-        <div class="v1_565">
-            <div class="v1_566"></div>
-            <div class="v1_567"></div>
-            <div class="v1_568"></div>
-            <div class="v1_569">
-                <div class="v1_570"></div>
-                <div class="v1_571"></div>
-                <div class="v1_572"></div>
-            </div>
-            <div class="v1_573"></div>
-            <div class="v1_574"></div>
-            <div class="v1_575">
-                <div class="v1_576"><div class="v1_577"></div></div>
-                <a href="setting.html">
-                    <div class="v1_578"></div>
-                </a>
-            </div>
-            <div class="v1_579"></div>
-        </div>
+        <span class="v1_561 d-none">Unknown</span><span class="v1_562"></span><span class="v1_563">&copy; 2021 lemlinks. All Rights Reserved.</span><span class="v1_564 common-faq-credit"><a href="https://pearllemonleads.com" class="footer-but-credit" style="color:#000" target="_blank">FAQs</a> / <a class="footer-but-credit" href="https://lemlinks.pearllemonleads.com" style="color:#000" target="_blank">Buy Credits</a></span>
     </div>
-    <script src="../../scripts/imports/js/jquery.min.js"></script>
+    <div class="v1_usercredit">
+        Credits: <label id="lblAvailableCredit">0</label>/<label id="lblTotalCredit">0</label>
+    </div>
+    <script src="../../scripts/popper.min.js"></script>
+    <script src="../../scripts/jquery-3.6.0.min.js"></script>
+    <script src="../../scripts/bootstrap.min.js"></script>
+    <script src="../popupScrippts/utilities.js"></script>
     <script src="../popupScrippts/linkChecker.js"></script>
 </body>
 </html>

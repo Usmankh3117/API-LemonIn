@@ -1,11 +1,84 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponce) => {
     if (request.message === "changeColor") {
         console.log("changeColor");
-        let links = document.getElementsByTagName("a");
-        for (let i = 0; i < links.length; i++) {
-            links[i].style.backgroundColor = "#90ee90";
+
+        let blockedDomains = request.BlockedDomain;
+        let blockedWords = request.BlockedWords;
+
+        var currentPage = location.href;
+        for (var i = 0; i < blockedDomains.length; i++) {
+            if (currentPage.indexOf(blockedDomains[i]) != -1) {
+                sendResponce(false);
+                return true;
+            }
         }
-        sendResponce({ length: links.length });
+
+        let links = document.getElementsByTagName("a");
+        let validLinks = [];
+
+        function link_is_external(link_element) {
+            return link_element.host !== window.location.host;
+        }
+
+        let allUnBlockedLinks = [];
+        for (let i = 0; i < links.length; i++) {
+            var href = $(links[i]).attr('href');
+            if (href != undefined && href != "") {
+                var myArray = blockedWords.filter(function (el) {
+                    return href.indexOf(el) < 0;
+                });
+                if (myArray != undefined && myArray.length == blockedWords.length)
+                    allUnBlockedLinks.push(links[i]);
+            }
+        }
+
+        for (let i = 0; i < allUnBlockedLinks.length; i++) {
+            if (allUnBlockedLinks[i].style != undefined)
+                allUnBlockedLinks[i].style.backgroundColor = "#ffcc00";
+
+            var href = $(allUnBlockedLinks[i]).attr('href');
+
+            if (link_is_external(allUnBlockedLinks[i])) {
+                validLinks.push(href);
+            }
+            else {
+                if (href == "/") {
+                    validLinks.push(allUnBlockedLinks[i].host);
+                }
+                else if (href.indexOf(allUnBlockedLinks[i].host) == -1) {
+                    if (href.startsWith("/"))
+                        validLinks.push(allUnBlockedLinks[i].host + href);
+                    else
+                        validLinks.push(allUnBlockedLinks[i].host + "/" + href);
+                }
+                else {
+                    validLinks.push(href);
+                }
+            }
+            //if ($(allUnBlockedLinks[i]).attr('href') != "" && $(allUnBlockedLinks[i]).attr('href') != undefined) {
+
+            //    var href = $(allUnBlockedLinks[i]).attr('href');
+            //    if (link_is_external(allUnBlockedLinks[i])) {
+            //        if (href != "#" && href != "javascript:void(0)" && href != "javascript:;" && href != "javascript:void(0);")
+            //            validLinks.push(href);
+            //    }
+            //    else {
+            //        if (href != "#" && href != "javascript:void(0)" && href != "javascript:;" && href != "javascript:void(0);") {
+            //            if (href == "/") {
+            //                validLinks.push(allUnBlockedLinks[i].host);
+            //            }
+            //            else if (href.indexOf(allUnBlockedLinks[i].host) == -1) {
+            //                validLinks.push(allUnBlockedLinks[i].host + "/" + href);
+            //            }
+            //            else {
+            //                validLinks.push(href);
+            //            }
+            //        }
+            //    }
+            //}
+        }
+
+        sendResponce({ length: allUnBlockedLinks.length, allLink: validLinks });
     }
     // Blocked websites
     if (request.message === "blockedWebsites") {
@@ -82,38 +155,112 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponce) => {
         function link_is_external(link_element) {
             return link_element.host !== window.location.host;
         }
+
+        let blockedDomains = request.BlockedDomain;
+        let blockedWords = request.BlockedWords;
+
+        var currentPage = location.href;
+        for (var i = 0; i < blockedDomains.length; i++) {
+            if (currentPage.indexOf(blockedDomains[i]) != -1) {
+                sendResponce(false);
+                return true;
+            }
+        }
+
         var links = document.getElementsByTagName("a");
-        for (var i = 0; i < links.length; i++) {
-            if (link_is_external(links[i])) {
+
+        let allUnBlockedLinks = [];
+        for (let i = 0; i < links.length; i++) {
+            var href = $(links[i]).attr('href');
+            if (href != undefined && href != "") {
+                var myArray = blockedWords.filter(function (el) {
+                    return href.indexOf(el) < 0;
+                });
+                if (myArray != undefined && myArray.length == blockedWords.length)
+                    allUnBlockedLinks.push(links[i]);
+            }
+        }
+
+        let responseLinks = [], lstInternalLink = [], lstExternalLink = [], lstDoFollowLink = [], lstNoFollowLink = [], lstSponsoredLink = [], lstUserGeneratedLink = [];
+        for (var i = 0; i < allUnBlockedLinks.length; i++) {
+            var href = $(allUnBlockedLinks[i]).attr('href');
+            var newHREF = "";
+            if (href == "/") {
+                newHREF = allUnBlockedLinks[i].host;
+            }
+            else if (href.indexOf(allUnBlockedLinks[i].host) == -1) {
+                if (href.startsWith("/"))
+                    newHREF = allUnBlockedLinks[i].host + href;
+                else
+                    newHREF = allUnBlockedLinks[i].host + "/" + href;
+            }
+            else {
+                newHREF = href;
+            }
+
+            if (link_is_external(allUnBlockedLinks[i])) {
                 externalLinks += 1;
+                lstExternalLink.push(newHREF);
+                //$(allUnBlockedLinks[i]).css("background-color", "rgba(90, 216, 13, 1)");
             } else {
                 internalLinks += 1;
+                lstInternalLink.push(newHREF);
+                //$(allUnBlockedLinks[i]).css("background-color", "rgba(255, 204, 0, 1)");
             }
-            if (links[i].rel == "nofollow") {
+            if (allUnBlockedLinks[i].rel.indexOf("nofollow") != -1) {
                 nofollowLinks += 1;
+                lstNoFollowLink.push(newHREF);
+                //$(allUnBlockedLinks[i]).css("background-color", "rgba(255, 91, 110, 1)");
             }
             else {
                 dofollowLinks += 1;
+                lstDoFollowLink.push(newHREF);
+                //$(allUnBlockedLinks[i]).css("background-color", "rgba(124, 137, 255, 1)");
             }
-            if (links[i].rel == "sponsored") {
+            if (allUnBlockedLinks[i].rel.indexOf("sponsored") != -1) {
                 sponsoredLinks += 1;
+                lstSponsoredLink.push(newHREF);
+                //$(allUnBlockedLinks[i]).css("background-color", "rgba(244, 160, 160, 1)");
             }
-            if (links[i].rel == "ugc") {
+            if (allUnBlockedLinks[i].rel.indexOf("ugc") != -1) {
                 ugcLinks += 1;
+                lstUserGeneratedLink.push(newHREF);
+                //$(allUnBlockedLinks[i]).css("background-color", "rgba(119, 214, 197, 1)");
+            }
+            console.log(allUnBlockedLinks[i].rel);
+
+            if (href == "/") {
+                responseLinks.push(allUnBlockedLinks[i].host);
+            }
+            else if (href.indexOf(allUnBlockedLinks[i].host) == -1) {
+                if (href.startsWith("/"))
+                    responseLinks.push(allUnBlockedLinks[i].host + href);
+                else
+                    responseLinks.push(allUnBlockedLinks[i].host + "/" + href);
+            }
+            else {
+                responseLinks.push(href);
             }
         }
 
         sendResponce({
             response: "Response from background script",
-            totalLinks: links.length,
+            totalLinks: allUnBlockedLinks.length,
+            allLinks: responseLinks,
             externalLinks: externalLinks,
             internalLinks: internalLinks,
             nofollowLinks: nofollowLinks,
             dofollowLinks: dofollowLinks,
             sponsoredLinks: sponsoredLinks,
             ugcLinks: ugcLinks,
+            lstInternal: lstInternalLink,
+            lstExternal: lstExternalLink,
+            lstDoFollow: lstDoFollowLink,
+            lstNoFollow: lstNoFollowLink,
+            lstSponsored: lstSponsoredLink,
+            lstUserGenerated: lstUserGeneratedLink,
         });
-        console.log("total links  " + links.length);
+        console.log("total links  " + allUnBlockedLinks.length);
         console.log(
             externalLinks +
             " " +
@@ -126,19 +273,161 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponce) => {
             ugcLinks
         );
     }
-    //  status check
-    if (request.message === "statusCheck") {
+
+    //  get all links
+    if (request.message === "HightLightByType") {
+        let externalLinks = 0;
+        let internalLinks = 0;
+        let nofollowLinks = 0;
+        let dofollowLinks = 0;
+        let sponsoredLinks = 0;
+        let ugcLinks = 0;
+        function link_is_external(link_element) {
+            return link_element.host !== window.location.host;
+        }
+
+        let blockedDomains = request.BlockedDomain;
+        let blockedWords = request.BlockedWords;
+
+        var currentPage = location.href;
+        for (var i = 0; i < blockedDomains.length; i++) {
+            if (currentPage.indexOf(blockedDomains[i]) != -1) {
+                sendResponce(false);
+                return true;
+            }
+        }
+
         var links = document.getElementsByTagName("a");
 
+        let allUnBlockedLinks = [];
+        for (let i = 0; i < links.length; i++) {
+            var href = $(links[i]).attr('href');
+            if (href != undefined && href != "") {
+                var myArray = blockedWords.filter(function (el) {
+                    return href.indexOf(el) < 0;
+                });
+                if (myArray != undefined && myArray.length == blockedWords.length)
+                    allUnBlockedLinks.push(links[i]);
+            }
+        }
+
+        let responseLinks = [];
+        for (var i = 0; i < allUnBlockedLinks.length; i++) {
+
+            $(allUnBlockedLinks[i]).css("background-color", "");
+
+            if (link_is_external(allUnBlockedLinks[i])) {
+                externalLinks += 1;
+                if (request.type == "External")
+                    $(allUnBlockedLinks[i]).css("background-color", "rgba(90, 216, 13, 1)");
+            } else {
+                internalLinks += 1;
+                if (request.type == "Internal")
+                    $(allUnBlockedLinks[i]).css("background-color", "rgba(255, 204, 0, 1)");
+            }
+            if (allUnBlockedLinks[i].rel.indexOf("nofollow") != -1) {
+                nofollowLinks += 1;
+                if (request.type == "NoFollow")
+                    $(allUnBlockedLinks[i]).css("background-color", "rgba(255, 91, 110, 1)");
+            }
+            else {
+                dofollowLinks += 1;
+                if (request.type == "DoFollow")
+                    $(allUnBlockedLinks[i]).css("background-color", "rgba(124, 137, 255, 1)");
+            }
+            if (allUnBlockedLinks[i].rel.indexOf("sponsored") != -1) {
+                sponsoredLinks += 1;
+                if (request.type == "Sponsored")
+                    $(allUnBlockedLinks[i]).css("background-color", "rgba(244, 160, 160, 1)");
+            }
+            if (allUnBlockedLinks[i].rel.indexOf("ugc") != -1) {
+                ugcLinks += 1;
+                if (request.type == "UGC")
+                    $(allUnBlockedLinks[i]).css("background-color", "rgba(119, 214, 197, 1)");
+            }
+            console.log(allUnBlockedLinks[i].rel);
+
+            var href = $(allUnBlockedLinks[i]).attr('href');
+            if (href == "/") {
+                responseLinks.push(allUnBlockedLinks[i].host);
+            }
+            else if (href.indexOf(allUnBlockedLinks[i].host) == -1) {
+                if (href.startsWith("/"))
+                    responseLinks.push(allUnBlockedLinks[i].host + href);
+                else
+                    responseLinks.push(allUnBlockedLinks[i].host + "/" + href);
+            }
+            else {
+                responseLinks.push(href);
+            }
+        }
+
+        sendResponce({
+            response: "Response from background script",
+            totalLinks: allUnBlockedLinks.length,
+            allLinks: responseLinks,
+            externalLinks: externalLinks,
+            internalLinks: internalLinks,
+            nofollowLinks: nofollowLinks,
+            dofollowLinks: dofollowLinks,
+            sponsoredLinks: sponsoredLinks,
+            ugcLinks: ugcLinks,
+        });
+    }
+
+    //  status check
+    if (request.message === "statusCheck") {
+        let blockedDomains = request.BlockedDomain;
+        let blockedWords = request.BlockedWords;
+
+        var currentPage = location.href;
+        for (var i = 0; i < blockedDomains.length; i++) {
+            if (currentPage.indexOf(blockedDomains[i]) != -1) {
+                sendResponce(false);
+                return true;
+            }
+        }
+
+        var links = document.getElementsByTagName("a");
+
+        let allUnBlockedLinks = [];
+        for (let i = 0; i < links.length; i++) {
+            var href = $(links[i]).attr('href');
+            if (href != undefined && href != "") {
+                var myArray = blockedWords.filter(function (el) {
+                    return href.indexOf(el) < 0;
+                });
+                if (myArray != undefined && myArray.length == blockedWords.length)
+                    allUnBlockedLinks.push(links[i]);
+            }
+        }
+
         var sendLink = [];
-        for (let i = 0; i <= links.length; i++) {
+        let responseLinks = [];
+        for (let i = 0; i <= allUnBlockedLinks.length; i++) {
             try {
-                sendLink.push(links[i].getAttribute("href"));
+                sendLink.push(allUnBlockedLinks[i].getAttribute("href"));
+
+                var href = $(allUnBlockedLinks[i]).attr('href');
+                if (href == "/") {
+                    responseLinks.push(allUnBlockedLinks[i].host);
+                }
+                else if (href.indexOf(allUnBlockedLinks[i].host) == -1) {
+                    if (href.startsWith("/"))
+                        responseLinks.push(allUnBlockedLinks[i].host + href);
+                    else
+                        responseLinks.push(allUnBlockedLinks[i].host + "/" + href);
+                }
+                else {
+                    responseLinks.push(href);
+                }
+
             } catch (error) { }
         }
         sendResponce({
             responceMessage: "All links are here",
             linksAll: sendLink,
+            fullLinks: responseLinks,
         });
     }
     // return all links
@@ -206,6 +495,65 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponce) => {
         }
     }
 
+    // change color of status
+    if (request.message === "HightLightByStatus") {
+        console.log("request", request);
+        var links = document.getElementsByTagName("a");
+        let j = 0;
+
+        for (let i = 0; i < request.rightLinks.length; i++) {
+            $(`[href="${request.rightLinks[i]}"]`).css("background-color", "");
+            if (request.type == "Valid")
+                $(`[href="${request.rightLinks[i]}"]`).css("background-color", "green");
+        }
+
+        for (let i = 0; i < request.fourOfourerrorLinks.length; i++) {
+            $(`[href="${request.fourOfourerrorLinks[i]}"]`).css("background-color", "");
+            if (request.type == "404")
+                $(`[href="${request.fourOfourerrorLinks[i]}"]`).css(
+                    "background-color",
+                    "yellow"
+                );
+        }
+        for (let i = 0; i < request.clientErrorLinks.length; i++) {
+            $(`[href="${request.clientErrorLinks[i]}"]`).css("background-color", "");
+            if (request.type == "NoDomain")
+                $(`[href="${request.clientErrorLinks[i]}"]`).css(
+                    "background-color",
+                    "red"
+                );
+        }
+        for (let i = 0; i < request.wothoutHrefLinks.length; i++) {
+            $(`[href="${request.wothoutHrefLinks[i]}"]`).css("background-color", "");
+            if (request.type == "Empty")
+                $(`[href="${request.wothoutHrefLinks[i]}"]`).css(
+                    "background-color",
+                    "grey"
+                );
+        }
+        for (let i = 0; i < request.serverErrorLinks.length; i++) {
+            $(`[href="${request.serverErrorLinks[i]}"]`).css("background-color", "");
+            if (request.type == "ServerError")
+                $(`[href="${request.serverErrorLinks[i]}"]`).css(
+                    "background-color",
+                    "orange"
+                );
+        }
+        for (let i = 0; i < request.reedirectLinks.length; i++) {
+            $(`[href="${request.reedirectLinks[i]}"]`).css("background-color", "");
+            if (request.type == "Redirect")
+                $(`[href="${request.reedirectLinks[i]}"]`).css(
+                    "background-color",
+                    "purple"
+                );
+        }
+        for (let i = 0; i < request.otherLinks.length; i++) {
+            $(`[href="${request.otherLinks[i]}"]`).css("background-color", "");
+            if (request.type == "Broken")
+                $(`[href="${request.otherLinks[i]}"]`).css("background-color", "blue");
+        }
+    }
+
     // for tabs show
     if (request.message === "showTabs") {
         var html = "";
@@ -246,3 +594,87 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponce) => {
     }
     return true;
 });
+
+
+
+(function () {
+
+    var init = function () {
+
+        chrome.storage.local.get(['ApppState', 'UserSetting'], function (result) {
+            if (result != undefined && result.ApppState != undefined && result.ApppState == true) {
+                if (result.UserSetting != undefined) {
+                    Settings = result.UserSetting;
+                    if (Settings.GoogleURLs) {
+                        var prerenderText = 'Lemlinks: Google has added a prerender tag to this URL which means that Google believes that users are mostly going to click through this result. This happens generally for brand queries and means that the keyword is very difficult to rank for';
+                        processPage({
+                            preRenderText: prerenderText
+                        });
+                    }
+                }
+            }
+        });
+    };
+
+    var Prefix = (function () {
+
+        var _prefix = '';
+
+        var init = function (prefix) {
+            _prefix = prefix;
+        };
+
+        var get = function (s) { return _prefix + '-' + s; };
+        var id = function (s) { return '#' + get(s); };
+        var cc = function (s) { return '.' + get(s); };
+        var data = function (s) {
+            return _prefix + '_' + s.replace(/-/g, '_');
+        };
+
+        return {
+            init: init,
+            _: get,
+            get: get,
+            id: id,
+            cc: cc,
+            data: data
+        };
+
+    })();
+
+    Prefix.init('smin');
+
+    var processPage = function (params) {
+        $('#ires .g, #res .g').map(function (i, node) {
+            var $node = $(node);
+            var link = $node.find('link[rel=prerender]')[0];
+            if (!link) return;
+            var $icon = $('<span>', { class: Prefix.get('google-prerender') });
+            $icon.attr('title', params.preRenderText);
+            $icon.css({
+                display: 'inline-block',
+                width: '24px',
+                height: '16px',
+                background: 'url(' + chrome.extension.getURL('img/prerender.png') + ') left no-repeat',
+                backgroundSize: 'contain',
+                marginLeft: '16px'
+            });
+            let $parent = $node.find('cite').parent();
+            let $next = $node.next();
+            if ($next.hasClass('B6fmyf')) {
+                if ($next.find('.fl')[0]) {
+                    $parent = $next.find('.eFM0qc');
+                }
+            }
+            $parent.append($icon);
+        });
+    };
+
+
+    return {
+        init: init
+    };
+
+})().init();
+
+

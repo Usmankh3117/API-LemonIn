@@ -1,39 +1,34 @@
 {
   "manifest_version": 2,
-  "name":"LimeLink",
-  "version":"1.0",
-  "description":"Seo based extension",
-  "browser_action":{
-    "default_icon":"./icons/icon_128.png"
+  "name": "Lemlinks-linkbuilding made easy",
+  "version": "3.1",
+  "description": "Seo based extension",
+  "browser_action": {
+    "default_icon": "./icons/LemlinksFavicon.png"
   },
   "background": {
-    "scripts": ["scripts/background.js"],
+    "scripts": [ "scripts/settingManager.js", "scripts/background.js" ],
     "persistent": true
   },
-  "icons":{
-    "16":"./icons/icon_16.png",
-    "48":"./icons/icon_48.png",  
-    "128":"./icons/icon_128.png"
+  "icons": {
+    "16": "./icons/icon_16.png",
+    "48": "./icons/icon_48.png",
+    "128": "./icons/icon_128.png"
   },
-  
   "permissions": [
     "tabs",
     "activeTab",
     "http://*/*",
     "https://*/*",
     "storage",
-    "webRequest",
-    "webRequestBlocking",
-    "webRequest",
-    "webNavigation",
-    "management",
     "identity"
   ],
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["./scripts/imports/js/jquery.min.js", "./scripts/contentScript.js"]
-      
+      "matches": [ "<all_urls>" ],
+      "js": [ "./scripts/imports/js/jquery.min.js", "./scripts/linkOpenerMaster.js", "./scripts/contentScript.js" ]
+
     }
-  ]
+  ],
+  "web_accessible_resources": [ "/img/*" ]
 }

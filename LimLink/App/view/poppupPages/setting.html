@@ -1,117 +1,239 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+          rel="stylesheet" />
     <link href="../assets/css/main.css" rel="stylesheet" />
+    <link href="../assets/css/customStyle.css" rel="stylesheet" />
+    <link href="../../css/all.min.css" rel="stylesheet" />
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
     <title>Document</title>
-  </head>
-  <body>
-    <div class="v1_419">
-      <div class="v1_434">
-        <div class="v1_435"></div>
-        <div class="v1_436"></div>
-        <div class="v1_437"></div>
-      </div>
-      <span class="v1_438">© 2021 lemlinks. All Rights Reserved.</span
-      ><span class="v1_439">FAQs / Buy Credits</span
-      ><span class="v1_440">Settings</span>
-      <div class="v1_441"></div>
-      <a href="dashBoard.html">
-        <div class="v1_442"></div>
-      </a>
-      <div class="v1_443"></div>
-      <div class="v1_444"></div>
-      <div class="v1_445"></div>
-      <div class="v1_446"></div>
-      <div class="v1_447"></div>
-      <div class="v1_448"></div>
-      <span class="v1_449">General Settings</span
-      ><span class="v1_450">Blacklist Domains</span
-      ><span class="v1_451">Blacklist Links With Words</span
-      ><span class="v1_452">Extracted link file type</span
-      ><span class="v1_453">Link Opener Settings</span
-      ><span class="v1_454">CSV</span><span class="v1_455">New Tab</span
-      ><span class="v1_456">TXT</span><span class="v1_457">New Window</span
-      ><span class="v1_458">New Inognito Window</span>
-      <div class="v1_459"></div>
-      <span class="v1_460">Type Keyword</span>
-      <div class="v1_461"></div>
-      <span class="v1_462">Reset To Default</span
-      ><span class="v1_463">Interval between checks</span
-      ><span class="v1_464">Cache my links for one month</span
-      ><span class="v1_465">Show pre-rendered URLs on Google</span
-      ><span class="v1_466">Do not check No-Follow links</span
-      ><span class="v1_467">?</span>
-      <div class="v1_468"></div>
-      <span class="v1_469">50</span><span class="v1_470">ms</span>
-      <div class="v1_471"></div>
-      <div class="v1_472">
-        <span class="v1_473">?</span>
-        <div class="v1_474"></div>
-      </div>
-      <div class="v1_475">
-        <span class="v1_476">?</span>
-        <div class="v1_477"></div>
-      </div>
-      <div class="v1_478">
-        <span class="v1_479">?</span>
-        <div class="v1_480"></div>
-      </div>
-      <div class="v1_481"></div>
-      <div class="v1_482"></div>
-      <div class="v1_483"></div>
-      <div class="v1_484"></div>
-      <div class="v1_485"></div>
-      <div class="v1_486"></div>
-      <div class="v1_487"></div>
-      <div class="v1_488"></div>
-      <div class="v1_489"></div>
-      <div class="v1_490"></div>
-      <div class="v1_491"></div>
-      <span class="v1_492"
-        >To stop Lemlinks on certain sites, please list the domains (one per
-        line)</span
-      ><span class="v1_493"
-        >To stop Lemlinks with links with certain words, please list the words
-        (one per line)</span
-      >
-      <div class="v1_494"></div>
-      <div class="v1_495"></div>
-      <div class="v1_496"></div>
-      <div class="v1_497"></div>
-      <div class="v1_498"></div>
-      <span class="v1_499">Block repeated links in a task</span>
-      <div class="v1_500"></div>
-      <div class="v1_501">
-        <div class="v1_502"></div>
-        <div class="v1_503"></div>
-      </div>
-      <div class="v1_504">
-        <div class="v1_505"></div>
-        <div class="v1_506"></div>
-      </div>
-      <div class="v1_507"></div>
-      <div class="v1_508"></div>
-      <div class="v1_509">
-        <div class="v1_510"></div>
-        <div class="v1_511"></div>
-        <div class="v1_512"></div>
-        <div class="v1_513">
-          <div class="v1_514"></div>
-          <div class="v1_515"></div>
-          <div class="v1_516"></div>
+</head>
+<body>
+    <style>
+        [data-toggle="collapse"] .fa:before {
+            content: "\f078";
+            /*content: "\f077";*/
+        }
+
+        [data-toggle="collapse"].collapsed .fa:before {
+            content: "\f077";
+            /*content: "\f078";*/
+        }
+
+        .opener-footer {
+            position: relative;
+        }
+
+        #divSettings .slider {
+            background-color: #fff !important;
+        }
+
+            #divSettings .slider:before {
+                background-color: #C0C0C0;
+            }
+
+        #divSettings input:checked + .slider:before {
+            background-color: #FFCC00;
+        }
+
+        .dropdown-menu {
+            left: -75px !important;
+        }
+    </style>
+    <div class="row app-header">
+        <div class="col-6 pl-4">
+            <a href="dashBoard.html">
+                <img src="../assets/images/linkHighLighterimages/v1_125.png" class="main-logo" />
+            </a>
         </div>
-        <div class="v1_517"></div>
-        <div class="v1_518"></div>
-        <div class="v1_519">
-          <div class="v1_520"><div class="v1_521"></div></div>
-          <div class="v1_522"></div>
+        <div class="col-6 text-right head-icon pt-2">
+            <!--<img src="../assets/images/bar-chart-2.svg" class="usericon-main" />-->
+            <a href="setting.html"><img src="../assets/images/settings.svg" class="usericon-main" title="Settings" /></a>
+            <div class="dropdown" style="width: 25px; display: inline-block;">
+                <img src="../assets/images/user.svg" class="usericon-main" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="accountSetting.html" title="Account Settings">Account Settings</a>
+                    <a class="dropdown-item" href="#" title="Buy Credits">Buy Credits</a>
+                    <a class="dropdown-item" href="#" id="btnLogout" title="Logout">Logout</a>
+                </div>
+            </div>
+            <label class="switch">
+                <input class="APP_STATE_TOGGLE" type="checkbox" id="chkAppOnOff" checked="checked">
+                <span class="slider round"></span>
+            </label>
         </div>
-        <div class="v1_523"></div>
-      </div>
     </div>
-  </body>
+    <div class="row m-2">
+        <div class="col-6" style="padding-top: 18px !important; padding-left: 20px; color: rgba(71, 70, 66, 1); font-size: 16px; font-family: Roboto; ">
+            <a href="dashBoard.html" style="color: black; padding-right: 8px; color: rgba(71, 70, 66, 1); font-size: 16px; ">
+                <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 1L1 6L6 11" stroke="#474642" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </a>
+            Settings
+        </div>
+        <div class="col-6 text-right" style="padding-top: 18px !important; padding-right: 10px; color: rgba(71, 70, 66, 1); font-size: 16px; font-family: Roboto; ">
+            Credits: <label id="lblAvailableCredit">0</label>/<label id="lblTotalCredit">0</label>
+        </div>
+        <div class="col-12 p-0">
+            <hr class="m-0" style="background-color: rgba(71, 70, 66, 1); margin-top: 0rem !important;" />
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-6">
+            <label id="lblResetSetting" class="text-success"></label>
+        </div>
+        <div class="col-6 text-right">
+            <button class="btn btn-primary custom-delete" id="btnResetSettings">Reset To Default</button>
+        </div>
+    </div>
+    <div class="col-12" id="divSettings">
+        <div class="p-2 settings-tabs row" data-toggle="collapse" data-target="#collapseGeneral" aria-expanded="true" aria-controls="collapseGeneral">
+            <div class="col-10">General Settings</div>
+            <div class="col-2"><i class="fa ml-3" aria-hidden="true"></i></div>
+        </div>
+        <div id="collapseGeneral" class="collapse p-3 show settings-tab-content" aria-labelledby="headingOne">
+            <div class="row mb-3">
+                <div class="col-1">
+                    <i class="far fa-question-circle"></i>
+                </div>
+                <div class="col-8">
+                    Interval between checks
+                </div>
+                <div class="col-3 text-right" style="display:inherit">
+                    <input type="number" class="form-control" placeholder="ms" id="txtIntervalChecks" style="padding: 5px !important;" />
+                    ms
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-1">
+                    <i class="far fa-question-circle"></i>
+                </div>
+                <div class="col-9">
+                    Cache my links for one month
+                </div>
+                <div class="col-2 text-right">
+                    <label class="switch">
+                        <input class="APP_STATE_TOGGLE" type="checkbox" id="chkCacheMylinks">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-1">
+                    <i class="far fa-question-circle"></i>
+                </div>
+                <div class="col-9">
+                    Do not  check No-Follow links
+                </div>
+                <div class="col-2 text-right">
+                    <label class="switch">
+                        <input class="APP_STATE_TOGGLE" type="checkbox" id="chkNoFollowLinks">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-1">
+                    <i class="far fa-question-circle"></i>
+                </div>
+                <div class="col-9">
+                    Show pre-rendered URLs on Google
+                </div>
+                <div class="col-2 text-right">
+                    <label class="switch">
+                        <input class="APP_STATE_TOGGLE" type="checkbox" id="chkURLsonGoogle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="p-2 settings-tabs row" data-toggle="collapse" data-target="#collapseblockDomain" aria-expanded="true" aria-controls="collapseblockDomain">
+            <div class="col-10">Blacklist Domains</div>
+            <div class="col-2"><i class="fa ml-3" aria-hidden="true"></i></div>
+        </div>
+        <div id="collapseblockDomain" class="collapse p-3 show settings-tab-content" aria-labelledby="headingOne">
+            <div class="row mb-1">
+                <div class="col-12">
+                    <textarea id="txtBlockDomains" class="form-control setting-textarea" rows="3" placeholder="To stop Lemlinks on certain sites, please list the domains (one per line)"></textarea>
+                    <label id="lblDomainMessage" class="m-0"></label>
+                </div>
+                <div class="col-12 mt-1 text-right">
+                    <button class="btn btn-primary custom-delete" id="btnSaveBlockDomains">Save</button>
+                </div>
+            </div>
+        </div>
+        <div class="p-2 settings-tabs row" data-toggle="collapse" data-target="#collapseblockWords" aria-expanded="true" aria-controls="collapseblockWords">
+            <div class="col-10">Blacklist Links With Words</div>
+            <div class="col-2"><i class="fa ml-3" aria-hidden="true"></i></div>
+        </div>
+        <div id="collapseblockWords" class="collapse p-3 show settings-tab-content" aria-labelledby="headingOne">
+            <div class="row mb-1">
+                <div class="col-12">
+                    <textarea id="txtBlockWords" class="form-control setting-textarea" rows="3" placeholder="To stop Lemlinks with links with certain words, please list the words (one per line)"></textarea>
+                    <label id="lblWordsMessage" class="m-0"></label>
+                </div>
+                <div class="col-12 mt-1 text-right">
+                    <button class="btn btn-primary custom-delete" id="btnSaveBlockWords">Save</button>
+                </div>
+            </div>
+        </div>
+        <div class="p-2 settings-tabs row" data-toggle="collapse" data-target="#collapseFileType" aria-expanded="true" aria-controls="collapseFileType">
+            <div class="col-10">Extracted link file type</div>
+            <div class="col-2"><i class="fa ml-3" aria-hidden="true"></i></div>
+        </div>
+        <div id="collapseFileType" class="collapse p-3 show settings-tab-content" aria-labelledby="headingOne">
+            <div class="row mb-1">
+                <div class="col-12 mb-2">
+                    <input type="radio" name="fileType" id="rbtnCSV" value="CSV" />
+                    CSV
+                </div>
+                <div class="col-12">
+                    <input type="radio" name="fileType" id="rbtnTXT" value="TXT" />
+                    TXT
+                </div>
+            </div>
+        </div>
+        <div class="p-2 settings-tabs row" data-toggle="collapse" data-target="#collapseLinkOpener" aria-expanded="true" aria-controls="collapseLinkOpener">
+            <div class="col-10">Extracted link file type</div>
+            <div class="col-2"><i class="fa ml-3" aria-hidden="true"></i></div>
+        </div>
+        <div id="collapseLinkOpener" class="collapse p-3 show settings-tab-content" aria-labelledby="headingOne">
+            <div class="row mb-1">
+                <div class="col-12 mb-2">
+                    <input type="radio" name="linkOpener" id="rbtnNewTab" value="NewTab" />
+                    New Tab
+                </div>
+                <div class="col-12 mb-2">
+                    <input type="radio" name="linkOpener" id="rbtnNewWindow" value="NewWindow" />
+                    New Window
+                </div>
+                <div class="col-12">
+                    <input type="radio" name="linkOpener" id="rbtnNewInognito" value="InognitoWindow" />
+                    New Inognito Window <label class="m-o text-danger">(Allow extension to run in incognito)</label>
+                </div>
+            </div>
+        </div>
+        <div class="p-2 settings-tabs row">
+            <div class="col-1">
+                <input type="radio" name="RepeatedLinks" id="rbtnRepeatedLinks" value="RepeatedLink" />
+            </div>
+            <div class="col-10">Block repeated links in a task</div>
+        </div>
+    </div>
+    <div class="row mb-3 m-2 opener-footer" style="padding-bottom: 10px !important; padding-left: 1px !important; ">
+        <div class="col-6" style="width: 450px; font-family: Roboto;">
+            &copy; 2021 lemlinks. All Rights Reserved.
+        </div>
+        <div class="col-6 text-right" style="padding-right: 17px; font-family: Roboto;">
+            <a href="https://pearllemonleads.com" class="footer-but-credit" style="color:#000" target="_blank">FAQs</a> / <a href="https://lemlinks.pearllemonleads.com" style="color:#000" target="_blank" class="footer-but-credit">Buy Credits</a>
+        </div>
+    </div>
+    <script src="../../scripts/popper.min.js"></script>
+    <script src="../../scripts/jquery-3.6.0.min.js"></script>
+    <script src="../../scripts/bootstrap.min.js"></script>
+    <script src="../popupScrippts/utilities.js"></script>
+    <script src="../popupScrippts/settings.js"></script>
+</body>
 </html>

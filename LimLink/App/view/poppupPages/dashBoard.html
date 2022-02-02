@@ -1,68 +1,101 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- <link
-      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
-      rel="stylesheet"
-    /> -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+          rel="stylesheet" />
     <link href="../assets/css/main.css" rel="stylesheet" />
+    <link href="../assets/css/customStyle.css" rel="stylesheet" />
+    <link href="../../css/all.min.css" rel="stylesheet" />
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
     <title>Document</title>
 </head>
 <body>
+    <div class="row app-header">
+        <div class="col-6 pl-4">
+            <a href="dashBoard.html">
+                <img src="../assets/images/linkHighLighterimages/v1_125.png" class="main-logo" />
+            </a>
+        </div>
+        <div class="col-6 text-right head-icon pt-2">
+            <!--<img src="../assets/images/bar-chart-2.svg" class="usericon-main" />-->
+            <a href="setting.html"><img src="../assets/images/settings.svg" class="usericon-main" title="Settings" /></a>
+            <div class="dropdown" style="width: 25px; display: inline-block;">
+                <img src="../assets/images/user.svg" class="usericon-main" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="accountSetting.html" title="Account Settings">Account Settings</a>
+                    <a class="dropdown-item" href="#" title="Buy Credits">Buy Credits</a>
+                    <a class="dropdown-item" href="#" id="btnLogout" title="Logout">Logout</a>
+                </div>
+            </div>
+            <label class="switch">
+                <input class="APP_STATE_TOGGLE" type="checkbox" id="chkAppOnOff" checked="checked">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
     <div class="v1_32">
-        <div class="v1_33"></div>
-        <div class="v1_34"></div>
-        <div class="v1_35"></div>
-        <div class="v1_36"></div>
-        <div class="v1_37"></div>
-        <div class="v1_38"></div>
+        <a href="linkHighLighter.html" class="lockPage">
+            <div class="v1_34 custombuttonhover"></div>
+        </a>
+        <a href="linkTyper.html" class="lockPage">
+            <div class="v1_35 custombuttonhover"></div>
+        </a>
+        <a href="linkChecker.html" class="lockPage">
+            <div class="v1_36 custombuttonhover"></div>
+        </a>
+        <a href="linkOpener.html" class="lockPage">
+            <div class="v1_37 custombuttonhover"></div>
+        </a>
+        <a href="myLinks.html">
+            <div class="v1_38 custombuttonhover"></div>
+        </a>
         <div class="v1_52"></div>
         <div class="v1_54">
             <div class="v1_55"></div>
             <div class="v1_56"></div>
             <div class="v1_57"></div>
         </div>
-        <div class="v1_58"></div>
-        <div class="v1_59">
-            <div class="v1_60"></div>
-            <div class="v1_61"></div>
-            <div class="v1_62"></div>
-        </div>
-        <div class="v1_63"></div>
-        <div class="v1_64"></div>
-        <div class="v1_65">
-            <div class="v1_66"><div class="v1_67"></div></div>
-            <a href="setting.html">
-                <div class="v1_68"></div>
-            </a>
-        </div>
         <span class="v1_69">&copy; 2021 lemlinks. All Rights Reserved.</span>
-        <!-- <a href="linkHighLighter.html"> -->
-        <!-- <button style="cursor: pointer"> -->
-        <span class="v1_70 hover-pointer" id="linkHighLighter">Link Highlighter</span>
-        <!-- </button> -->
-        <!-- </a> -->
-        <a href="linkTyper.html"> <span class="v1_71">Link Typer</span> </a>
-        <a href="linkChecker.html">
-            <span class="v1_72">Link Checker</span>
+
+        <a href="linkHighLighter.html" class="lockPage">
+            <span class="v1_70 hover-pointer buttonhighlighterHover">Link Highlighter</span>
         </a>
-        <a href="linkOpener.html">
-            <span class="v1_73">Link Opener</span>
+        <a href="linkTyper.html" class="lockPage"> <span class="v1_71 buttonlinkType">Link Typer</span> </a>
+        <a href="linkChecker.html" class="lockPage">
+            <span class="v1_72 buttonlinkchecker">Link Checker</span>
+        </a>
+        <a href="linkOpener.html" class="lockPage">
+            <span class="v1_73 buttonlinkOpener">Link Opener</span>
         </a>
         <a href="myLinks.html">
-            <span class="v1_74">My Links</span>
+            <span class="v1_74 buttonMylink">My Links</span>
         </a>
-        <span class="v1_75">FAQs / Buy Credits</span><span class="v1_76">Dashboard</span>
+        <span class="v1_75 common-faq-credit"><a href="https://pearllemonleads.com" class="footer-but-credit" style="color:#000" target="_blank">FAQs</a> / <a href="https://lemlinks.pearllemonleads.com" class="footer-but-credit" style="color:#000" target="_blank">Buy Credits</a></span><span class="v1_76">Dashboard</span>
         <div class="v1_77"></div>
-        <div class="v1_78"></div>
-        <div class="v1_79"></div>
-        <div class="v1_80"></div>
-        <div class="v1_81"></div>
-        <div class="v1_82"></div>
-        <div class="v1_125"></div>
-    </div>
 
-    <script src="../../scripts/imports/js/jquery.min.js"></script>
+        <a href="linkHighLighter.html" class="lockPage">
+            <div class="v1_79 buttonhighlighterHover"></div>
+        </a>
+        <a href="linkTyper.html" class="lockPage">
+            <div class="v1_81 buttonlinkType"></div>
+        </a>
+        <a href="linkChecker.html" class="lockPage">
+            <div class="v1_78 buttonlinkchecker"></div>
+        </a>
+        <a href="linkOpener.html" class="lockPage">
+            <div class="v1_80 buttonlinkOpener"></div>
+        </a>
+        <a href="myLinks.html">
+            <div class="v1_82 buttonMylink"></div>
+        </a>
+    </div>
+    <div class="v1_usercredit">
+        Credits: <label id="lblAvailableCredit">0</label>/<label id="lblTotalCredit">0</label>
+    </div>
+    <script src="../../scripts/popper.min.js"></script>
+    <script src="../../scripts/jquery-3.6.0.min.js"></script>
+    <script src="../../scripts/bootstrap.min.js"></script>
     <script src="../popupScrippts/dashBoard.js"></script>
+    <script src="../popupScrippts/utilities.js"></script>
 </body>
 </html>

@@ -2,7 +2,8 @@
     $(".button-click").click(function () {
         const button = $(this);
         clickEventStatus(button, false);
-        loading(true);
+        //loading(true);
+        loadingNewButton(true, "SUBMIT");
         const data = extractInputInfo($(".input-feild"));
         if (!isCheckForEmpty(data)) {
 
@@ -26,25 +27,29 @@
                             }
                             else {
                                 clickEventStatus(button, true);
-                                loading(false);
+                                //loading(false);
+                                loadingNewButton(false, "SUBMIT");
                                 alert(data.message);
                             }
                         }
                     },
                     error: function (data) {
                         clickEventStatus(button, true);
-                        loading(false);
+                        /*loading(false);*/
+                        loadingNewButton(false, "SUBMIT");
                     }
                 });
             }
             else {
                 clickEventStatus(button, true);
-                loading(false);
+                /*loading(false);*/
+                loadingNewButton(false, "SUBMIT");
                 alert("Please Enter Valid Email");
             }
         } else {
             clickEventStatus(button, true);
-            loading(false);
+            /*loading(false);*/
+            loadingNewButton(false, "SUBMIT");
             alert("Please Fill In All Feilds");
         }
     });

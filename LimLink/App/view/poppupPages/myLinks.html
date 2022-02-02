@@ -4,16 +4,42 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
           rel="stylesheet" />
     <link href="../assets/css/main.css" rel="stylesheet" />
+    <link href="../assets/css/customStyle.css" rel="stylesheet" />
+    <link href="../../css/all.min.css" rel="stylesheet" />
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
     <title>Document</title>
 </head>
 <body>
+    <div class="row app-header">
+        <div class="col-6 pl-4">
+            <a href="dashBoard.html">
+                <img src="../assets/images/linkHighLighterimages/v1_125.png" class="main-logo" />
+            </a>
+        </div>
+        <div class="col-6 text-right head-icon pt-2">
+            <!--<img src="../assets/images/bar-chart-2.svg" class="usericon-main" />-->
+            <a href="setting.html"><img src="../assets/images/settings.svg" class="usericon-main" title="Settings" /></a>
+            <div class="dropdown" style="width: 25px; display: inline-block;">
+                <img src="../assets/images/user.svg" class="usericon-main" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="accountSetting.html" title="Account Settings">Account Settings</a>
+                    <a class="dropdown-item" href="#" title="Buy Credits">Buy Credits</a>
+                    <a class="dropdown-item" href="#" id="btnLogout" title="Logout">Logout</a>
+                </div>
+            </div>
+            <label class="switch">
+                <input class="APP_STATE_TOGGLE" type="checkbox" id="chkAppOnOff" checked="checked">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
     <div class="v1_234">
         <div class="v1_249">
             <div class="v1_250"></div>
             <div class="v1_251"></div>
             <div class="v1_252"></div>
         </div>
-        <span class="v1_253">© 2021 lemlinks. All Rights Reserved.</span><span class="v1_254">FAQs / Buy Credits</span><span class="v1_255">My Links</span>
+        <span class="v1_253">&copy; 2021 lemlinks. All Rights Reserved.</span><span class="v1_254 common-faq-credit"><a href="https://pearllemonleads.com" class="footer-but-credit" style="color:#000" target="_blank">FAQs</a> / <a href="https://lemlinks.pearllemonleads.com" class="footer-but-credit" style="color:#000" target="_blank">Buy Credits</a></span><span class="v1_255">My Links</span>
         <div class="v1_256"></div>
         <a href="dashBoard.html">
             <div class="v1_111">
@@ -22,35 +48,29 @@
                 </svg>
             </div>
         </a>
-        <div class="v1_258"></div>
-        <div class="v1_259"></div>
-        <div class="v1_260"></div>
         <a href="validLinks.html">
-            <span class="v1_261">Valid links</span>
+            <div class="v1_258 custombuttonhover"></div>
+        </a>
+        <a href="sharedLinks.html">
+            <div class="v1_259 custombuttonhover"></div>
+        </a>
+        <a href="savedLink.html">
+            <div class="v1_260 custombuttonhover"></div>
+        </a>
+        <a href="validLinks.html">
+            <span class="v1_261">History</span>
         </a>
         <a href="sharedLinks.html"> <span class="v1_262">Shared Links</span></a>
         <a href="savedLink.html">
             <span class="v1_263">Saved links</span>
         </a>
-        <div class="v1_264">
-            <div class="v1_265"></div>
-            <div class="v1_266"></div>
-            <div class="v1_267"></div>
-            <div class="v1_268">
-                <div class="v1_269"></div>
-                <div class="v1_270"></div>
-                <div class="v1_271"></div>
-            </div>
-            <div class="v1_272"></div>
-            <div class="v1_273"></div>
-            <div class="v1_274">
-                <div class="v1_275"><div class="v1_276"></div></div>
-                <a href="setting.html">
-                    <div class="v1_277"></div>
-                </a>
-            </div>
-            <div class="v1_278"></div>
-        </div>
     </div>
+    <div class="v1_usercredit">
+        Credits: <label id="lblAvailableCredit">0</label>/<label id="lblTotalCredit">0</label>
+    </div>
+    <script src="../../scripts/popper.min.js"></script>
+    <script src="../../scripts/jquery-3.6.0.min.js"></script>
+    <script src="../../scripts/bootstrap.min.js"></script>
+    <script src="../popupScrippts/utilities.js"></script>
 </body>
 </html>

@@ -92,22 +92,47 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\css\all.min.css" />
+    <Content Include="App\css\bootstrap.min.css" />
     <Content Include="App\icons\icon_128.png" />
     <Content Include="App\icons\icon_16.png" />
     <Content Include="App\icons\icon_48.png" />
+    <Content Include="App\icons\LemlinksFavicon.png" />
+    <Content Include="App\img\prerender.png" />
     <Content Include="App\scripts\background.js" />
+    <Content Include="App\scripts\bootstrap.min.js" />
     <Content Include="App\scripts\contentScript.js" />
     <Content Include="App\scripts\imports\js\jquery.min.js" />
+    <Content Include="App\scripts\jquery-3.6.0.min.js" />
+    <Content Include="App\scripts\linkOpenerMaster.js" />
+    <Content Include="App\scripts\popper.min.js" />
+    <Content Include="App\scripts\settingManager.js" />
+    <Content Include="App\view\assets\css\customStyle.css" />
     <Content Include="App\view\assets\css\main.css" />
     <Content Include="App\view\assets\css\signUpcss\main.css" />
+    <Content Include="App\view\assets\images\bar-chart-2.svg" />
     <Content Include="App\view\assets\images\dashBoardImages\v1_78.png" />
     <Content Include="App\view\assets\images\dashBoardImages\v1_79.png" />
     <Content Include="App\view\assets\images\dashBoardImages\v1_80.png" />
     <Content Include="App\view\assets\images\dashBoardImages\v1_81.png" />
     <Content Include="App\view\assets\images\dashBoardImages\v1_82.png" />
+    <Content Include="App\view\assets\images\download.svg" />
+    <Content Include="App\view\assets\images\Ellipse 8.png" />
+    <Content Include="App\view\assets\images\eye.png" />
+    <Content Include="App\view\assets\images\hide-eye.png" />
+    <Content Include="App\view\assets\images\Lemlinks - white.png" />
+    <Content Include="App\view\assets\images\Lemlinks Favicon.png" />
+    <Content Include="App\view\assets\images\Lemlinks.png" />
+    <Content Include="App\view\assets\images\LemlinksFavicon.png" />
     <Content Include="App\view\assets\images\linkHighLighterimages\v1_125.png" />
+    <Content Include="App\view\assets\images\log-out.svg" />
+    <Content Include="App\view\assets\images\prerender-icon.png" />
+    <Content Include="App\view\assets\images\settings.svg" />
     <Content Include="App\view\assets\images\signUpimages\v1_631.png" />
+    <Content Include="App\view\assets\images\user.svg" />
     <Content Include="App\view\assets\images\v1_18.png" />
+    <Content Include="App\view\assets\images\Vector.png" />
+    <Content Include="App\view\poppupPages\accountSetting.html" />
     <Content Include="App\view\poppupPages\dashBoard.html" />
     <Content Include="App\view\poppupPages\emailSignIn.html" />
     <Content Include="App\view\poppupPages\emailSignUp.html" />
@@ -126,14 +151,23 @@
     <Content Include="App\view\poppupPages\started.html" />
     <Content Include="App\view\poppupPages\validLinks.html" />
     <Content Include="App\view\poppupPages\verifyEmail.html" />
+    <Content Include="App\view\popupScrippts\accountSetting.js" />
     <Content Include="App\view\popupScrippts\dashBoard.js" />
     <Content Include="App\view\popupScrippts\emailSignIn.js" />
     <Content Include="App\view\popupScrippts\emailSignUp.js" />
     <Content Include="App\view\popupScrippts\forgotPassword.js" />
+    <Content Include="App\view\popupScrippts\historyLinks.js" />
     <Content Include="App\view\popupScrippts\linkChecker.js" />
     <Content Include="App\view\popupScrippts\linkHighlighter.js" />
+    <Content Include="App\view\popupScrippts\linkOpener.js" />
     <Content Include="App\view\popupScrippts\linkTyper.js" />
+    <Content Include="App\view\popupScrippts\savedLinks.js" />
+    <Content Include="App\view\popupScrippts\settings.js" />
+    <Content Include="App\view\popupScrippts\sharedLinks.js" />
     <Content Include="App\view\popupScrippts\utilities.js" />
+    <Content Include="App\webfonts\fa-brands-400.svg" />
+    <Content Include="App\webfonts\fa-regular-400.svg" />
+    <Content Include="App\webfonts\fa-solid-900.svg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +201,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\manifest.json" />
+    <Content Include="App\webfonts\fa-brands-400.eot" />
+    <Content Include="App\webfonts\fa-brands-400.ttf" />
+    <Content Include="App\webfonts\fa-brands-400.woff" />
+    <Content Include="App\webfonts\fa-brands-400.woff2" />
+    <Content Include="App\webfonts\fa-regular-400.eot" />
+    <Content Include="App\webfonts\fa-regular-400.ttf" />
+    <Content Include="App\webfonts\fa-regular-400.woff" />
+    <Content Include="App\webfonts\fa-regular-400.woff2" />
+    <Content Include="App\webfonts\fa-solid-900.eot" />
+    <Content Include="App\webfonts\fa-solid-900.ttf" />
+    <Content Include="App\webfonts\fa-solid-900.woff" />
+    <Content Include="App\webfonts\fa-solid-900.woff2" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

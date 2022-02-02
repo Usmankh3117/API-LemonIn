@@ -4,20 +4,96 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
           rel="stylesheet" />
     <link href="../assets/css/main.css" rel="stylesheet" />
+    <link href="../assets/css/customStyle.css" rel="stylesheet" />
+    <link href="../../css/all.min.css" rel="stylesheet" />
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="../../scripts/popper.min.js"></script>
+    <script src="../../scripts/jquery-3.6.0.min.js"></script>
+    <script src="../../scripts/bootstrap.min.js"></script>
+    <script src="../popupScrippts/linkOpener.js"></script>
+    <script src="../popupScrippts/utilities.js"></script>
     <title>Document</title>
 </head>
 <body>
+    <style>
+        .link-textbox {
+            border: none;
+            width: 200px;
+            height: 21px;
+        }
+
+        .v1_218 {
+            top: 110px;
+        }
+    </style>
+    <div class="row app-header">
+        <div class="col-6 pl-4">
+            <a href="dashBoard.html">
+                <img src="../assets/images/linkHighLighterimages/v1_125.png" class="main-logo" />
+            </a>
+        </div>
+        <div class="col-6 text-right head-icon pt-2">
+            <!--<img src="../assets/images/bar-chart-2.svg" class="usericon-main" />-->
+            <a href="setting.html"><img src="../assets/images/settings.svg" class="usericon-main" title="Settings" /></a>
+            <div class="dropdown" style="width: 25px; display: inline-block;">
+                <img src="../assets/images/user.svg" class="usericon-main" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="accountSetting.html" title="Account Settings">Account Settings</a>
+                    <a class="dropdown-item" href="#" title="Buy Credits">Buy Credits</a>
+                    <a class="dropdown-item" href="#" id="btnLogout" title="Logout">Logout</a>
+                </div>
+            </div>
+            <label class="switch">
+                <input class="APP_STATE_TOGGLE" type="checkbox" id="chkAppOnOff" checked="checked">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+    <!--<div class="row m-2">
+        <div class="col-12 pt-2">
+            <a href="dashBoard.html" style="color:black"><i class="fas fa-chevron-left mr-3"></i></a>
+            Link Opener
+        </div>
+        <div class="col-12">
+            <hr class="m-0 mt-3" style="background-color: rgba(71, 70, 66, 1); margin-top: .63rem !important;" />
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-6">
+            <input type="text" placeholder="Type URL" class="form-control" id="txtURL" style="padding: .150rem .75rem;" />
+            <label id="lblMessage" class="text-danger"></label>
+        </div>
+        <div class="col-6">
+            <button id="btnOpenURL" type="submit" class="btn btn-primary" style="padding: .150rem .75rem;">Submit</button>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-12 info-opener-text">
+            Press S key and the Left mouse button, then drag the selection box
+            around the links you want to open. When you release the mouse button all
+            the selected links will be opened as New Tabs.
+        </div>
+    </div>
+    <div class="row mb-3 m-2 opener-footer">
+        <div class="col-6" style="width: 450px;">
+            &copy; 2021 lemlinks. All Rights Reserved.
+        </div>
+        <div class="col-6 text-right">
+            FAQs / Buy Credits
+        </div>
+    </div>-->
     <div class="v1_192">
         <div class="v1_207">
             <div class="v1_208"></div>
             <div class="v1_209"></div>
             <div class="v1_210"></div>
         </div>
-        <span class="v1_211">© 2021 lemlinks. All Rights Reserved.</span><span class="v1_212">
+        <span class="v1_211">&copy; 2021 lemlinks. All Rights Reserved.</span><span class="v1_212">
             Press S key and the Left mouse button, then drag the selection box
             around the links you want to open. When you release the mouse button all
             the selected links will be opened as New Tabs.
-        </span><span class="v1_213">FAQs / Buy Credits</span><span class="v1_214">Link Opener</span>
+        </span><span class="v1_213 common-faq-credit"><a href="https://pearllemonleads.com" class="footer-but-credit" style="color:#000" target="_blank">FAQs</a> / <a href="https://lemlinks.pearllemonleads.com" class="footer-but-credit" style="color:#000" target="_blank">Buy Credits</a></span><span class="v1_214">Link Opener</span>
         <div class="v1_215"></div>
         <a href="dashBoard.html">
             <div class="v1_111">
@@ -26,27 +102,9 @@
                 </svg>
             </div>
         </a>
-        <div class="v1_217"></div>
-        <span class="v1_218">Type URL</span>
-        <div class="v1_219">
-            <div class="v1_220"></div>
-            <div class="v1_221"></div>
-            <div class="v1_222"></div>
-            <div class="v1_223">
-                <div class="v1_224"></div>
-                <div class="v1_225"></div>
-                <div class="v1_226"></div>
-            </div>
-            <div class="v1_227"></div>
-            <div class="v1_228"></div>
-            <div class="v1_229">
-                <div class="v1_230"><div class="v1_231"></div></div>
-                <a href="setting.html">
-                    <div class="v1_232"></div>
-                </a>
-            </div>
-            <div class="v1_233"></div>
-        </div>
+    </div>
+    <div class="v1_usercredit">
+        Credits: <label id="lblAvailableCredit">0</label>/<label id="lblTotalCredit">0</label>
     </div>
 </body>
 </html>
