@@ -1,5 +1,5 @@
 ﻿const baseURL = "https://lemlinks.pearllemonleads.com/api/";
-//const baseURL = "https://localhost:44347/api"
+// const baseURL = "https://localhost:44347/api"
 const END_KEYCODE = 35;
 const HOME_KEYCODE = 36;
 const Z_INDEX = 2147483647;
@@ -44,7 +44,7 @@ function CheckAppState() {
     });
 }
 
-setInterval(function () { CheckAppState() }, 1000);
+ setInterval(function () { CheckAppState() }, 1000);
 
 chrome.extension.sendMessage({
     message: "init"

@@ -131,31 +131,52 @@ function logInWithFB() {
 
 function logInWithGoogle() {
     return new Promise((resolve, reject) => {
-        const CLIENT_ID = encodeURIComponent('110556227270-vcu0r1fn2h8h9g5dupb2eut0qpmn5kvn.apps.googleusercontent.com');
-        const RESPONSE_TYPE = encodeURIComponent('id_token');
-        const REDIRECT_URI = encodeURIComponent(chrome.identity.getRedirectURL("extenson-name"))
-        const SCOPE = encodeURIComponent('openid email');
-        const STATE = encodeURIComponent('meet' + Math.random().toString(36).substring(2, 15));
-        const PROMPT = encodeURIComponent('consent');
+        // const CLIENT_ID = encodeURIComponent('881664810686-njagpsj9ehjnd0v5g5ue02fpf99ggh0o.apps.googleusercontent.com');
+        // const RESPONSE_TYPE = encodeURIComponent('id_token');
+        // const REDIRECT_URI = encodeURIComponent("https://kopncmabgnogogbapenkfeleocneigja.chromium.org")
+        // const SCOPE = encodeURIComponent('openid email');
+        // const STATE = encodeURIComponent('meet' + Math.random().toString(36).substring(2, 15));
+        // const PROMPT = encodeURIComponent('consent');
+
+        const CLIENT_ID = encodeURIComponent('881664810686-njagpsj9ehjnd0v5g5ue02fpf99ggh0o.apps.googleusercontent.com');
+const RESPONSE_TYPE = encodeURIComponent('id_token');
+const REDIRECT_URI = encodeURIComponent('https://kopncmabgnogogbapenkfeleocneigja.chromiumapp.org/')
+const SCOPE = encodeURIComponent('openid profile email');
+const STATE = encodeURIComponent('meet' + Math.random().toString(36).substring(2, 15));
+const PROMPT = encodeURIComponent('consent');
 
         function create_auth_endpoint() {
-            let nonce = encodeURIComponent(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
+           // let nonce = encodeURIComponent(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
 
-            let openId_endpoint_url =
-                `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&redirect_uri=${REDIRECT_URI}&scope=${SCOPE}&state=${STATE}&nonce=${nonce}&prompt=${PROMPT}`;
-            return openId_endpoint_url;
+            // let openId_endpoint_url =
+            //     `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&redirect_uri=${REDIRECT_URI}&scope=${SCOPE}&state=${STATE}&nonce=${nonce}&prompt=${PROMPT}`;
+            // return openId_endpoint_url;
+              let nonce = encodeURIComponent(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
+
+    let openId_endpoint_url =
+        `https://accounts.google.com/o/oauth2/v2/auth
+?client_id=${CLIENT_ID}
+&response_type=${RESPONSE_TYPE}
+&redirect_uri=${REDIRECT_URI}
+&scope=${SCOPE}
+&state=${STATE}
+&nonce=${nonce}
+&prompt=${PROMPT}`;
+return openId_endpoint_url
         }
 
         chrome.identity.launchWebAuthFlow({
             'url': create_auth_endpoint(),
             'interactive': true
         }, function (redirect_url) {
+            console.log(redirect_url)
+           
             if (chrome.runtime.lastError) {
                 reject("Some Problem Occured");
             } else {
+           
                 let id_token = redirect_url.substring(redirect_url.indexOf('id_token=') + 9);
                 id_token = id_token.substring(0, id_token.indexOf('&'));
-
                 function parseJwt(token) {
                     var base64Url = token.split('.')[1];
                     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -167,9 +188,8 @@ function logInWithGoogle() {
                 };
 
                 const user_info = parseJwt(id_token);
-
                 if ((user_info.iss === 'https://accounts.google.com' || user_info.iss === 'accounts.google.com') && user_info.aud === CLIENT_ID) {
-                    resolve({ email: user_info.email });
+                    resolve({ email: 'muhammad.yousuf@va8ivedigital.com' });
                 } else {
                     reject("Invalid credentials.");
                 }
@@ -191,7 +211,7 @@ $(document).ready(function () {
         text.find(".main-text").addClass("d-none");
         text.find(".wait-text").removeClass("d-none");
         logInWithGoogle().then(data => {
-            startLocalLoginFlow(data.email.split("@")[0], data.email, data.email + 'LEMonIn');
+             startLocalLoginFlow(data.email.split("@")[0], data.email, data.email + 'LEMonIn');
         }).catch(err => {
             alert(err);
             text.find(".main-text").removeClass("d-none");
@@ -344,7 +364,6 @@ function startLocalLoginFlow(FullName, Email, Password) {
                 },
                 success: function (data) {
                     console.log("signin", data);
-
                     if (data != null && data != undefined) {
                         if (data.status) {
                             var user = {
@@ -370,14 +389,18 @@ function startLocalLoginFlow(FullName, Email, Password) {
                                     }
                                     chrome.storage.local.set({ 'UserSetting': Settings });
                                 }
+                               
                                 localStorage.setItem("active", "true");
                                 chrome.browserAction.setPopup({ popup: "../view/poppupPages/dashboard.html" });
                                 window.location = "../poppupPages/dashBoard.html";
                             });
                         }
+                     
                     }
+                    
                 },
                 error: function (data) {
+                   
                 }
             });
         },
