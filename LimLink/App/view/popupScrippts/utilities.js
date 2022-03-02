@@ -71,8 +71,8 @@ function IsEmail(email) {
 function logInWithFB() {
     //var clientId = '396986901552505';
     //var clientSecret = '04ef65d51bcd9e455e4607f08ad7a89a';
-    var clientId = '580000616710447';
-    var clientSecret = 'fdcfb638a08aaa7e739242aaee6f07e9';
+    var clientId = '';
+    var clientSecret = '';
 
     var redirectUri = chrome.identity.getRedirectURL("extenson-name") //chrome.identity.getRedirectURL("extenson-name");
 
