@@ -71,15 +71,15 @@ function IsEmail(email) {
 function logInWithFB() {
     //var clientId = '396986901552505';
     //var clientSecret = '04ef65d51bcd9e455e4607f08ad7a89a';
-    var clientId = '197633565597322';
-    var clientSecret = '046b08ebdfb17582487a3a495d30bfef';
-    var redirectUri = chrome.identity.getRedirectURL("extenson-name");
+    var clientId = '580000616710447';
+    var clientSecret = 'fdcfb638a08aaa7e739242aaee6f07e9';
+
+    var redirectUri = chrome.identity.getRedirectURL("extenson-name") //chrome.identity.getRedirectURL("extenson-name");
 
     var url = 'https://www.facebook.com/dialog/oauth?client_id=' + clientId +
         '&reponse_type=token&access_type=online&display=popup' +
         '&scope=email' +
         '&redirect_uri=' + redirectUri;
-
     var deferred = $.Deferred();
 
     chrome.identity.launchWebAuthFlow(
@@ -105,12 +105,15 @@ function logInWithFB() {
                     type: "GET",
                     crossDomain: true
                 }).then(function (data) {
+                    
                     let getURL = `https://graph.facebook.com/me?access_token=${data.access_token}`;
                     fetch(getURL).then(response => response.json()).then(response => {
+                       
                         const userInfo = { name: response.name, password: `${response.id}@facebook.com` };
                         getURL = `https://graph.facebook.com/${response.id}?fields=email&access_token=${data.access_token}`;
                         fetch(getURL).then(response => response.json()).then(response => {
                             userInfo.email = response.email;
+                            
                             deferred.resolve(userInfo);
                         }).catch(err => {
                             deferred.reject(err);
@@ -138,9 +141,10 @@ function logInWithGoogle() {
         // const STATE = encodeURIComponent('meet' + Math.random().toString(36).substring(2, 15));
         // const PROMPT = encodeURIComponent('consent');
 
-        const CLIENT_ID = encodeURIComponent('881664810686-njagpsj9ehjnd0v5g5ue02fpf99ggh0o.apps.googleusercontent.com');
+        const CLIENT_ID = encodeURIComponent('168043750259-9474gshgr7tv2e7ss12027njojtk80nb.apps.googleusercontent.com');
 const RESPONSE_TYPE = encodeURIComponent('id_token');
-const REDIRECT_URI = encodeURIComponent('https://kopncmabgnogogbapenkfeleocneigja.chromiumapp.org/')
+const REDIRECT_URI = chrome.identity.getRedirectURL()
+
 const SCOPE = encodeURIComponent('openid profile email');
 const STATE = encodeURIComponent('meet' + Math.random().toString(36).substring(2, 15));
 const PROMPT = encodeURIComponent('consent');
@@ -188,8 +192,9 @@ return openId_endpoint_url
                 };
 
                 const user_info = parseJwt(id_token);
+               
                 if ((user_info.iss === 'https://accounts.google.com' || user_info.iss === 'accounts.google.com') && user_info.aud === CLIENT_ID) {
-                    resolve({ email: 'muhammad.yousuf@va8ivedigital.com' });
+                    resolve({ email: user_info.email });
                 } else {
                     reject("Invalid credentials.");
                 }
@@ -225,9 +230,14 @@ $(document).ready(function () {
         const text = $(".facebook-text");
         text.find(".main-text").addClass("d-none");
         text.find(".wait-text").removeClass("d-none");
+    
         logInWithFB().then(data => {
+         
+         
             startLocalLoginFlow(data.name, data.email, data.password + 'LEMonIn');
         }).catch(err => {
+          
+    
             alert(err);
             text.find(".main-text").removeClass("d-none");
             text.find(".wait-text").addClass("d-none");
@@ -325,6 +335,8 @@ $(document).ready(function () {
 });
 
 function startLocalLoginFlow(FullName, Email, Password) {
+ 
+    
     $.ajax({
         type: "POST",
         url: baseURL + "account/register",
