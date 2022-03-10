@@ -1,10 +1,11 @@
 $(document).ready(function () {
-    //chrome.storage.local.get(['LemonInUser'], function (result) {
-    //    if (result != undefined || result.LemonInUser != undefined) {
-    //        LockFeatures(result.LemonInUser.Id);
-    //    }
-    //});
+    chrome.storage.local.get(['LemonInUser'], function (result) {
+       if (result != undefined || result.LemonInUser != undefined) {
+           LockFeatures(result.LemonInUser.Id);
+       }
+    });
 });
+
 
 function LockFeatures(userId) {
     $.ajax({

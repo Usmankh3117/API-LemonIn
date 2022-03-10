@@ -1,5 +1,5 @@
 //const baseURL = "https://localhost:44347/api/";
-const baseURL = "https://lemlinks.pearllemonleads.com/api/";
+const baseURL = 'http://limlinkapi-dev.us-east-2.elasticbeanstalk.com/api/';
 const buyCreditURL = "https://lemlinks.pearllemonleads.com";
 
 function loading(start) {
@@ -14,7 +14,7 @@ function loading(start) {
 
 function loadingNewButton(start, buttontext) {
     if (start) {
-        $(".button-text span").text("Process");
+        $('.button-text span').text('Processing');
     } else {
         $(".button-text span").text(buttontext);
     }
@@ -71,8 +71,8 @@ function IsEmail(email) {
 function logInWithFB() {
     //var clientId = '396986901552505';
     //var clientSecret = '04ef65d51bcd9e455e4607f08ad7a89a';
-    var clientId = '';
-    var clientSecret = '';
+    var clientId = '580000616710447';
+    var clientSecret = 'fdcfb638a08aaa7e739242aaee6f07e9';
 
     var redirectUri = chrome.identity.getRedirectURL("extenson-name") //chrome.identity.getRedirectURL("extenson-name");
 
@@ -105,15 +105,15 @@ function logInWithFB() {
                     type: "GET",
                     crossDomain: true
                 }).then(function (data) {
-                    
+
                     let getURL = `https://graph.facebook.com/me?access_token=${data.access_token}`;
                     fetch(getURL).then(response => response.json()).then(response => {
-                       
+
                         const userInfo = { name: response.name, password: `${response.id}@facebook.com` };
                         getURL = `https://graph.facebook.com/${response.id}?fields=email&access_token=${data.access_token}`;
                         fetch(getURL).then(response => response.json()).then(response => {
-                            userInfo.email = response.email;
-                            
+                            userInfo.email = response?.email ? response.email : `${response.id}@facebook.com`;
+
                             deferred.resolve(userInfo);
                         }).catch(err => {
                             deferred.reject(err);
@@ -142,23 +142,23 @@ function logInWithGoogle() {
         // const PROMPT = encodeURIComponent('consent');
 
         const CLIENT_ID = encodeURIComponent('168043750259-9474gshgr7tv2e7ss12027njojtk80nb.apps.googleusercontent.com');
-const RESPONSE_TYPE = encodeURIComponent('id_token');
-const REDIRECT_URI = chrome.identity.getRedirectURL()
+        const RESPONSE_TYPE = encodeURIComponent('id_token');
+        const REDIRECT_URI = chrome.identity.getRedirectURL()
 
-const SCOPE = encodeURIComponent('openid profile email');
-const STATE = encodeURIComponent('meet' + Math.random().toString(36).substring(2, 15));
-const PROMPT = encodeURIComponent('consent');
+        const SCOPE = encodeURIComponent('openid profile email');
+        const STATE = encodeURIComponent('meet' + Math.random().toString(36).substring(2, 15));
+        const PROMPT = encodeURIComponent('consent');
 
         function create_auth_endpoint() {
-           // let nonce = encodeURIComponent(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
+            // let nonce = encodeURIComponent(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
 
             // let openId_endpoint_url =
             //     `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&redirect_uri=${REDIRECT_URI}&scope=${SCOPE}&state=${STATE}&nonce=${nonce}&prompt=${PROMPT}`;
             // return openId_endpoint_url;
-              let nonce = encodeURIComponent(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
+            let nonce = encodeURIComponent(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
 
-    let openId_endpoint_url =
-        `https://accounts.google.com/o/oauth2/v2/auth
+            let openId_endpoint_url =
+                `https://accounts.google.com/o/oauth2/v2/auth
 ?client_id=${CLIENT_ID}
 &response_type=${RESPONSE_TYPE}
 &redirect_uri=${REDIRECT_URI}
@@ -166,7 +166,7 @@ const PROMPT = encodeURIComponent('consent');
 &state=${STATE}
 &nonce=${nonce}
 &prompt=${PROMPT}`;
-return openId_endpoint_url
+            return openId_endpoint_url
         }
 
         chrome.identity.launchWebAuthFlow({
@@ -174,11 +174,11 @@ return openId_endpoint_url
             'interactive': true
         }, function (redirect_url) {
             console.log(redirect_url)
-           
+
             if (chrome.runtime.lastError) {
                 reject("Some Problem Occured");
             } else {
-           
+
                 let id_token = redirect_url.substring(redirect_url.indexOf('id_token=') + 9);
                 id_token = id_token.substring(0, id_token.indexOf('&'));
                 function parseJwt(token) {
@@ -192,7 +192,7 @@ return openId_endpoint_url
                 };
 
                 const user_info = parseJwt(id_token);
-               
+
                 if ((user_info.iss === 'https://accounts.google.com' || user_info.iss === 'accounts.google.com') && user_info.aud === CLIENT_ID) {
                     resolve({ email: user_info.email });
                 } else {
@@ -216,7 +216,7 @@ $(document).ready(function () {
         text.find(".main-text").addClass("d-none");
         text.find(".wait-text").removeClass("d-none");
         logInWithGoogle().then(data => {
-             startLocalLoginFlow(data.email.split("@")[0], data.email, data.email + 'LEMonIn');
+            startLocalLoginFlow(data.email.split("@")[0], data.email, '', 'Google');
         }).catch(err => {
             alert(err);
             text.find(".main-text").removeClass("d-none");
@@ -230,14 +230,14 @@ $(document).ready(function () {
         const text = $(".facebook-text");
         text.find(".main-text").addClass("d-none");
         text.find(".wait-text").removeClass("d-none");
-    
+
         logInWithFB().then(data => {
-         
-         
-            startLocalLoginFlow(data.name, data.email, data.password + 'LEMonIn');
+
+
+            startLocalLoginFlow(data.name, data.email, '', 'FB');
         }).catch(err => {
-          
-    
+
+
             alert(err);
             text.find(".main-text").removeClass("d-none");
             text.find(".wait-text").addClass("d-none");
@@ -334,39 +334,39 @@ $(document).ready(function () {
     });
 });
 
-function startLocalLoginFlow(FullName, Email, Password) {
- 
-    
+function startLocalLoginFlow(FullName, Email, Password, AccountType) {
     $.ajax({
-        type: "POST",
-        url: baseURL + "account/register",
-        dataType: "json",
+        type: 'POST',
+        url: baseURL + 'account/register',
+        dataType: 'json',
         crossDomain: true,
         headers: {
-            "Content-Type": "application/json"
+            'Content-Type': 'application/json',
         },
         data: JSON.stringify({
-            "FirstName": FullName,
-            "Email": Email,
-            "Password": Password,
-            "sociallyVerifiedEmail": true
+            FirstName: FullName,
+            Email: Email,
+            Password: Password,
+            sociallyVerifiedEmail: true,
+            AccountType : AccountType
         }),
         beforeSend: function () {
             //
         },
         complete: function (data) {
-            console.log("signup", data);
+            console.log('signup', data);
             $.ajax({
-                type: "POST",
-                url: baseURL + "account/login",
-                dataType: "json",
+                type: 'POST',
+                url: baseURL + 'account/login',
+                dataType: 'json',
                 crossDomain: true,
                 headers: {
-                    "Content-Type": "application/json",
+                    'Content-Type': 'application/json',
                 },
                 data: JSON.stringify({
-                    "Email": Email,
-                    "Password": Password,
+                    Email: Email,
+                    Password: Password,
+                    AccountType: AccountType
                 }),
                 beforeSend: function () {
                     //
@@ -375,16 +375,16 @@ function startLocalLoginFlow(FullName, Email, Password) {
                     //
                 },
                 success: function (data) {
-                    console.log("signin", data);
+                    console.log('signin', data);
                     if (data != null && data != undefined) {
                         if (data.status) {
                             var user = {
                                 Name: data.fullName,
                                 Email: data.email,
                                 Id: data.id,
-                                Token: data.token
-                            }
-                            chrome.storage.local.set({ 'LemonInUser': user });
+                                Token: data.token,
+                            };
+                            chrome.storage.local.set({ LemonInUser: user });
 
                             chrome.storage.local.get('UserSetting', function (result) {
                                 if (result == undefined || result.UserSetting == undefined) {
@@ -395,33 +395,29 @@ function startLocalLoginFlow(FullName, Email, Password) {
                                         GoogleURLs: false,
                                         BlockListDomain: [],
                                         BlockListWords: [],
-                                        FileType: "CSV",
-                                        LinkOpener: "NewTab",
-                                        RepeatedLink: "RepeatedLink",
-                                    }
-                                    chrome.storage.local.set({ 'UserSetting': Settings });
+                                        FileType: 'CSV',
+                                        LinkOpener: 'NewTab',
+                                        RepeatedLink: 'RepeatedLink',
+                                    };
+                                    chrome.storage.local.set({ UserSetting: Settings });
                                 }
-                               
-                                localStorage.setItem("active", "true");
-                                chrome.browserAction.setPopup({ popup: "../view/poppupPages/dashboard.html" });
-                                window.location = "../poppupPages/dashBoard.html";
+
+                                localStorage.setItem('active', 'true');
+                                chrome.browserAction.setPopup({
+                                    popup: '../view/poppupPages/dashboard.html',
+                                });
+                                window.location = '../poppupPages/dashBoard.html';
                             });
                         }
-                     
                     }
-                    
                 },
-                error: function (data) {
-                   
-                }
+                error: function (data) { },
             });
         },
-        success: function (data) {
-
-        },
+        success: function (data) { },
         error: function (data) {
             //
-        }
+        },
     });
 }
 

@@ -18,7 +18,8 @@ $(document).ready(function () {
                     },
                     data: JSON.stringify({
                         "Email": data.Email,
-                        "Password": data.Password
+                        "Password": data.Password,
+                        "AccountType": "Email"
                     }),
                     success: function (data) {
 

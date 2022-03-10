@@ -21,6 +21,7 @@ $(document).ready(function () {
                         "FirstName": data.FirstName,
                         "Email": data.Email,
                         "Password": data.Password,
+                        "AccountType": "Email"
                     }),
                     success: function (data) {
 

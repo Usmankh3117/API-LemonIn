@@ -1,4 +1,4 @@
-﻿const baseURL = "https://lemlinks.pearllemonleads.com/api/";
+﻿const baseURL = 'http://limlinkapi-dev.us-east-2.elasticbeanstalk.com/api/';
 // const baseURL = "https://localhost:44347/api"
 const END_KEYCODE = 35;
 const HOME_KEYCODE = 36;

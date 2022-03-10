@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Lemlinks-linkbuilding made easy",
-  "version": "3.2",
+  "name": "Lemlinks-Link Discovery Made Easy",
+  "version": "3.3",
   "description": "Seo based extension",
   "browser_action": {
     "default_icon": "./icons/LemlinksFavicon.png"
