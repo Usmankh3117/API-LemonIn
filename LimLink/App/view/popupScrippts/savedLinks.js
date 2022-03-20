@@ -204,7 +204,7 @@ function GenerateCSVData(allLinksData, IsCSV) {
             var userLink = allLinksData[i];
             var linkName = userLink.link;
             var id = userLink.id;
-            csvData += linkName + "\n";
+            csvData += '=HYPERLINK("' + linkName + '"' + ')' + "\n";//csvData += linkName + "\n";
         }
         if (IsCSV)
             $("#btnDownloadSaved").attr("download", "Saved Links.csv");

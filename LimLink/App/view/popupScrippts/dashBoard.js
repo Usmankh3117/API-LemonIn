@@ -4,6 +4,43 @@ $(document).ready(function () {
            LockFeatures(result.LemonInUser.Id);
        }
     });
+
+    (function () {
+
+        chrome.storage.local.get(['ApppState', 'UserSetting'], function (result) {
+            if (result != undefined && result.ApppState != undefined && result.ApppState == true) {
+
+                let blockedDomains = [], blockedWords = [];
+                if (result.UserSetting != undefined) {
+                    blockedDomains = result.UserSetting.BlockListDomain;
+                    blockedWords = result.UserSetting.BlockListWords;
+                    FileTypeSetting = result.UserSetting.FileType;
+                }
+
+                chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
+                    var activeTab = tabs[0];
+                    chrome.tabs.sendMessage(
+                        activeTab.id,
+                        { message: "resetColor", BlockedDomain: blockedDomains, BlockedWords: blockedWords },
+                        (responce) => {
+
+                            console.log("responce", responce);
+                            if (responce == false)
+                                return;
+                            var error = chrome.runtime.lastError;
+                            if (error) {
+                                // chrome.tabs.sendMessage(activeTab.id, { message: "reloadPage" });
+                            } else {
+                                //   window.location = "linkHighLighter.html";
+                                
+                            }
+                        }
+                    );
+                });
+            }
+        });
+
+    }());
 });
 
 

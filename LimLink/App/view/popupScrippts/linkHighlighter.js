@@ -92,7 +92,8 @@ function GenerateCSVData(allLinksData) {
         var csvData = "";
         for (var i = 0; i < allLinksData.length; i++) {
             var link = allLinksData[i];
-            csvData += link + "\n";
+            csvData += '=HYPERLINK("' + link + '"' + ')' + "\n";
+            //csvData += link + "\n";
         }
         if (FileTypeSetting != "" && FileTypeSetting == "CSV")
             $("#btnDownloadHighLighter").attr("download", "Link Highlighter Links.csv");

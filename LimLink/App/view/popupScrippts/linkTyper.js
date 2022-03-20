@@ -151,7 +151,8 @@ function LinkTypeGenerateCSV(lstData, buttonId, fileName) {
     if (lstData != undefined && lstData.length > 0) {
         var csvInternal = "";
         for (var i = 0; i < lstData.length; i++) {
-            csvInternal += lstData[i] + "\n";
+            //csvInternal += lstData[i] + "\n";
+            csvInternal += '=HYPERLINK("' + lstData[i] + '"' + ')' + "\n";
         }
 
         if (FileTypeSetting != "" && FileTypeSetting == "CSV")

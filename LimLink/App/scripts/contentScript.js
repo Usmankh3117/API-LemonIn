@@ -80,6 +80,66 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponce) => {
 
         sendResponce({ length: allUnBlockedLinks.length, allLink: validLinks });
     }
+    if (request.message === "resetColor") {
+
+        let blockedDomains = request.BlockedDomain;
+        let blockedWords = request.BlockedWords;
+
+        var currentPage = location.href;
+        for (var i = 0; i < blockedDomains.length; i++) {
+            if (currentPage.indexOf(blockedDomains[i]) != -1) {
+                sendResponce(false);
+                return true;
+            }
+        }
+
+        let links = document.getElementsByTagName("a");
+        let validLinks = [];
+
+        function link_is_external(link_element) {
+            return link_element.host !== window.location.host;
+        }
+
+        let allUnBlockedLinks = [];
+        for (let i = 0; i < links.length; i++) {
+            var href = $(links[i]).attr('href');
+            if (href != undefined && href != "") {
+                var myArray = blockedWords.filter(function (el) {
+                    return href.indexOf(el) < 0;
+                });
+                if (myArray != undefined && myArray.length == blockedWords.length)
+                    allUnBlockedLinks.push(links[i]);
+            }
+        }
+
+        for (let i = 0; i < allUnBlockedLinks.length; i++) {
+            if (allUnBlockedLinks[i].style != undefined)
+                allUnBlockedLinks[i].style.backgroundColor = "";
+
+            var href = $(allUnBlockedLinks[i]).attr('href');
+
+            if (link_is_external(allUnBlockedLinks[i])) {
+                validLinks.push(href);
+            }
+            else {
+                if (href == "/") {
+                    validLinks.push(allUnBlockedLinks[i].host);
+                }
+                else if (href.indexOf(allUnBlockedLinks[i].host) == -1) {
+                    if (href.startsWith("/"))
+                        validLinks.push(allUnBlockedLinks[i].host + href);
+                    else
+                        validLinks.push(allUnBlockedLinks[i].host + "/" + href);
+                }
+                else {
+                    validLinks.push(href);
+                }
+            }
+            
+        }
+
+        sendResponce({ length: allUnBlockedLinks.length, allLink: validLinks });
+    }
     // Blocked websites
     if (request.message === "blockedWebsites") {
         // console.log(request);

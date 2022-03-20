@@ -205,6 +205,7 @@ function logInWithGoogle() {
 
 $(document).ready(function () {
     $("#lblCopyMessage,#divShareDetails,#lblShareEmail").hide();
+    document.getElementById("cr_year").innerHTML = new Date().getFullYear();
     //$("#chkAppOnOff").prop('checked', true);
     if ($(".dropdown-menu .dropdown-item").length > 0) {
         $($(".dropdown-menu .dropdown-item")[1]).attr("href", buyCreditURL);

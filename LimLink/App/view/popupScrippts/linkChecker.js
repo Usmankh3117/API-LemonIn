@@ -302,9 +302,9 @@ function GenerateCSVData(rightLinks, fourOfourerrorLinks, wothoutHrefLinks, reed
 function LinkCheckerGenerateCSV(lstData, buttonId, fileName) {
 
     if (lstData != undefined && lstData.length > 0) {
-        var csvInternal = "";
+        var csvInternal = '';
         for (var i = 0; i < lstData.length; i++) {
-            csvInternal += lstData[i] + "\n";
+            csvInternal += '=HYPERLINK("' + lstData[i] + '"' + ')' + "\n";
         }
 
         if (FileTypeSetting != "" && FileTypeSetting == "CSV")

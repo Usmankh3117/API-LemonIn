@@ -3165,7 +3165,7 @@ body {
     color: rgba(26, 26, 26, 1);
     position: absolute;
     top: 154px;
-    left: 416px;
+    left: 380px;
     font-family: Roboto;
     font-weight: Regular;
     font-size: 14px;
@@ -3178,7 +3178,7 @@ body {
     color: rgba(26, 26, 26, 1);
     position: absolute;
     top: 212px;
-    left: 416px;
+    left: 380px;
     font-family: Roboto;
     font-weight: Regular;
     font-size: 14px;
@@ -3191,7 +3191,7 @@ body {
     color: rgba(26, 26, 26, 1);
     position: absolute;
     top: 270px;
-    left: 416px;
+    left: 380px;
     font-family: Roboto;
     font-weight: Regular;
     font-size: 14px;
@@ -3204,7 +3204,7 @@ body {
     color: rgba(26, 26, 26, 1);
     position: absolute;
     top: 328px;
-    left: 416px;
+    left: 380px;
     font-family: Roboto;
     font-weight: Regular;
     font-size: 14px;
@@ -3217,7 +3217,7 @@ body {
     color: rgba(26, 26, 26, 1);
     position: absolute;
     top: 386px;
-    left: 416px;
+    left: 380px;
     font-family: Roboto;
     font-weight: Regular;
     font-size: 14px;
@@ -3230,7 +3230,7 @@ body {
     color: rgba(26, 26, 26, 1);
     position: absolute;
     top: 444px;
-    left: 416px;
+    left: 380px;
     font-family: Roboto;
     font-weight: Regular;
     font-size: 14px;
@@ -3796,7 +3796,7 @@ body {
     color: rgba(26, 26, 26, 1);
     position: absolute;
     top: 153px;
-    left: 416px;
+    left: 380px;
     font-family: Roboto;
     font-weight: Regular;
     font-size: 14px;
@@ -3809,7 +3809,7 @@ body {
     color: rgba(26, 26, 26, 1);
     position: absolute;
     top: 211px;
-    left: 416px;
+    left: 380px;
     font-family: Roboto;
     font-weight: Regular;
     font-size: 14px;
@@ -3822,7 +3822,7 @@ body {
     color: rgba(26, 26, 26, 1);
     position: absolute;
     top: 269px;
-    left: 416px;
+    left: 380px;
     font-family: Roboto;
     font-weight: Regular;
     font-size: 14px;
@@ -3835,7 +3835,7 @@ body {
     color: rgba(26, 26, 26, 1);
     position: absolute;
     top: 327px;
-    left: 416px;
+    left: 380px;
     font-family: Roboto;
     font-weight: Regular;
     font-size: 14px;
@@ -3848,7 +3848,7 @@ body {
     color: rgba(26, 26, 26, 1);
     position: absolute;
     top: 385px;
-    left: 416px;
+    left: 380px;
     font-family: Roboto;
     font-weight: Regular;
     font-size: 14px;
@@ -3861,7 +3861,7 @@ body {
     color: rgba(26, 26, 26, 1);
     position: absolute;
     top: 443px;
-    left: 416px;
+    left: 380px;
     font-family: Roboto;
     font-weight: Regular;
     font-size: 14px;
@@ -3874,7 +3874,7 @@ body {
     color: rgba(26, 26, 26, 1);
     position: absolute;
     top: 501px;
-    left: 416px;
+    left: 380px;
     font-family: Roboto;
     font-weight: Regular;
     font-size: 14px;
@@ -7569,77 +7569,77 @@ i:hover {
 .v1_DonwloadTypeInternal {
     position: absolute;
     top: 148px;
-    left: 175px;
+    left: 420px;
 }
 
 .v1_DonwloadTypeExternal {
     position: absolute;
     top: 205px;
-    left: 175px;
+    left: 420px;
 }
 
 .v1_DonwloadTypeDo {
     position: absolute;
     top: 263px;
-    left: 185px;
+    left: 420px;
 }
 
 .v1_DonwloadTypeNo {
     position: absolute;
     top: 321px;
-    left: 185px;
+    left: 420px;
 }
 
 .v1_DonwloadTypeSponsored {
     position: absolute;
     top: 379px;
-    left: 195px;
+    left: 420px;
 }
 
 .v1_DonwloadTypeUser {
     position: absolute;
     top: 437px;
-    left: 224px;
+    left: 420px;
 }
 
 .v1_DonwloadCheckValid {
     position: absolute;
     top: 145px;
-    left: 160px;
+    left: 420px;
 }
 
 .v1_DonwloadCheck404 {
     position: absolute;
     top: 205px;
-    left: 160px;
+    left: 420px;
 }
 
 .v1_DonwloadCheckbroken {
     position: absolute;
     top: 262px;
-    left: 170px;
+    left: 420px;
 }
 
 .v1_DonwloadCheckempty {
     position: absolute;
     top: 320px;
-    left: 170px;
+    left: 420px;
 }
 
 .v1_DonwloadCheckredirects {
     position: absolute;
     top: 377px;
-    left: 150px;
+    left: 420px;
 }
 
 .v1_DonwloadChecknoDomain {
     position: absolute;
     top: 435px;
-    left: 190px;
+    left: 420px;
 }
 
 .v1_DonwloadCheckServer {
     position: absolute;
     top: 494px;
-    left: 175px;
+    left: 420px;
 }

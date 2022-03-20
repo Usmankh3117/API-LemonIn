@@ -281,7 +281,7 @@ function GenerateCSVData(allLinksData, IsCSV) {
             for (var j = 0; j < allLinks.length; j++) {
                 var link = allLinks[j].link;
                 var id = allLinks[j].id;
-                csvData += date + "," + link + "\n";
+                csvData += date + "," + '=HYPERLINK("' + link + '"' + ')' + "\n";//csvData += date + "," + link + "\n";
             }
         }
         if (IsCSV)
